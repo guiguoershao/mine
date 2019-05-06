@@ -1,0 +1,15 @@
+/clients
+/node_modules
+/public/hot
+/public/storage
+/public/lottery
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.env
+composer.lock
