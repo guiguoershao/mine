@@ -1,0 +1,29 @@
+<html>
+<head>
+
+</head>
+<body>
+    <div id="app">
+        <script>
+            var wsServer = "ws:127.0.0.1:9502";
+            var webSocket = new WebSocket(wsServer);
+
+            webSocket.onopen = function (event) {
+                console.log("connected to WebSocket server .");
+            }
+
+            webSocket.onclose = function (event) {
+                console.log("disconnected");
+            }
+
+            webSocket.onmessage = function (event) {
+                console.log("Retrieved data from server: " + event.data);
+            }
+
+            webSocket.onerror = function (event, e) {
+                console.log("Error occured: " + event.data);
+            }
+        </script>
+    </div>
+</body>
+</html>
