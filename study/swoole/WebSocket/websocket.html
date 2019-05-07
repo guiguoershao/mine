@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8"/>
     <title></title>
-    <script type="text/javascript" src="/js/jquery-1.9.0.js"></script>
+    <script type="text/javascript" src="jquery-1.9.0.js"></script>
 </head>
 <body>
 <div id="messages"></div>
 <script type="text/javascript">
     $(function () {
-        $.post('/getSign', {}, function (wsConnect) {
+        $.post('http://127.0.0.1/project/mine/study/swoole/WebSocket/getSign.php', {}, function (wsConnect) {
 //            var wsConnect = result.data.connect;
             alert(1);
             console.log(wsConnect);

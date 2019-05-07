@@ -8,9 +8,6 @@
 
 namespace WebSocket\Base;
 
-
-use PhpParser\Node\Scalar\String_;
-
 class Response
 {
     private $responseData = [];
