@@ -8,7 +8,8 @@
     ],
     "require": {
         "symfony/var-dumper": "^4.2",
-        "monolog/monolog": "^1.24"
+        "monolog/monolog": "^1.24",
+        "predis/predis": "^1.1"
     },
     "autoload": {
         "psr-4": {

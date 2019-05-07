@@ -23,7 +23,7 @@ class WebSocketApp
      * @param $appName
      * @param $config ['redis'=>['host' => '', 'port' => '', 'pass' => '', 'db' => 1], 'ws'=>['ws' => '127.0.0.1:9501', 'http' => '127.0.0.1:9501']]
      */
-    public function __construct($appName = 'default', $config = [])
+    public function __construct($config, $appName = 'default')
     {
         Config::init($appName, $config['redis'], $config['ws']);
     }

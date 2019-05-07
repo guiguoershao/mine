@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <script type="text/javascript" src="/js/jquery-1.9.0.js"></script>
+</head>
+<body>
+<div id="messages"></div>
+<script type="text/javascript">
+    $(function () {
+        $.post('/getSign', {}, function (wsConnect) {
+//            var wsConnect = result.data.connect;
+            alert(1);
+            console.log(wsConnect);
+
+            var webSocket = new WebSocket(wsConnect);
+            $(function () {
+                webSocket.onerror = function (event) {
+                    console.log(event);
+                };
+                //与WebSocket建立连接
+                webSocket.onopen = function (event) {
+                    console.log(event);
+                    console.log('与服务器端建立了连接');
+                };
+
+                //处理服务器返回的信息
+                webSocket.onmessage = function (event) {
+                    result = event.data;
+                    result = JSON.parse(result);
+                    console.log(result);
+                    document.getElementById('messages').innerHTML += '<br />' + event.data;
+                };
+
+                webSocket.onclose = function (event) {
+                    console.log(event);
+                    console.log('服务器端关闭了连接');
+                };
+            })
+        }, 'text');
+    })
+</script>
+</body>
+</html>
