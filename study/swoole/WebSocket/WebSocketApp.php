@@ -21,10 +21,11 @@ class WebSocketApp
      * 初始化配置
      * WebSocketApp constructor.
      * @param $appName
+     * @param $config ['redis'=>['host' => '', 'port' => '', 'pass' => '', 'db' => 1], 'ws'=>['ws' => '', 'http' => '']]
      */
-    public function __construct($appName = 'default')
+    public function __construct($appName = 'default', $config = [])
     {
-        Config::init($appName, ['host' => env('REDIS_HOST'), 'port' => env('REDIS_PORT'), 'pass' => env('REDIS_PASSWORD'), 'db' => 1], ['ws' => env('WS_SERVER'), 'http' => env('HTTP_SERVER')]);
+        Config::init($appName, $config['redis'], $config['ws']);
     }
 
     public function start()
