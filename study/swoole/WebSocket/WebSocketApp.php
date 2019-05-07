@@ -21,7 +21,7 @@ class WebSocketApp
      * 初始化配置
      * WebSocketApp constructor.
      * @param $appName
-     * @param $config ['redis'=>['host' => '', 'port' => '', 'pass' => '', 'db' => 1], 'ws'=>['ws' => '', 'http' => '']]
+     * @param $config ['redis'=>['host' => '', 'port' => '', 'pass' => '', 'db' => 1], 'ws'=>['ws' => '127.0.0.1:9501', 'http' => '127.0.0.1:9501']]
      */
     public function __construct($appName = 'default', $config = [])
     {
