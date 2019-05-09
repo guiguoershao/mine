@@ -11,11 +11,11 @@ $client->connect('127.0.0.1', 6379, function (swoole_redis $swoole_redis, $resul
     dump("connect redis server success");
     $swoole_redis->set('test', 'test', function (swoole_redis $swoole_redis, $result) {
         dump($result);
-
     });
 
     $swoole_redis->set('test:1', 'test-1', function (swoole_redis $swoole_redis, $result) {
         dump($result);
     });
 
+    $swoole_redis->close();
 });
