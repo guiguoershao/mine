@@ -7,6 +7,12 @@
 /vendor
 /.idea
 /.vagrant
+/Log
+/Temp
+dev.php
+easyswoole
+EasySwooleEvent.php
+produce.php
 Homestead.json
 Homestead.yaml
 npm-debug.log
