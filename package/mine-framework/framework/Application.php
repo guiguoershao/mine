@@ -9,11 +9,23 @@
 // | Github: 鬼国二少 <https://github.com/guiguoershao>
 // +----------------------------------------------------------------------
 
+namespace guiguoershao;
 
-namespace Guiguoershao\Http;
-
-
-class Request
+/**
+ * 启动程序
+ * Class Application
+ * @package guiguoershao
+ */
+class Application
 {
+    /**
+     * 容器单例对象
+     * @var
+     */
+    private static $container;
 
+    public function bootstrap()
+    {
+
+    }
 }

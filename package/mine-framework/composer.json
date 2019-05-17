@@ -1,0 +1,32 @@
+{
+  "require": {
+    "monolog/monolog": "^1.23",
+    "psr/http-message": "^1.0",
+    "league/flysystem": "^1.0",
+    "overtrue/wechat": "~4.0",
+    "guzzlehttp/guzzle": "~6.0",
+    "jaeger/querylist": "^4.0",
+    "paquettg/php-html-parser": "^1.7",
+    "catfan/Medoo": "^1.5",
+    "zhuzhichao/ip-location-zh": "^2.4"
+  },
+  "autoload": {
+    "files": [
+      "./framework/helper.php"
+    ],
+    "psr-4": {
+      "guiguoershao\\": "framework",
+      "app\\": "app",
+      "": "extend"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.2",
+    "eaglewu/swoole-ide-helper": "dev-master"
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ]
+  }
+}
