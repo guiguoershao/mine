@@ -11,8 +11,11 @@
 
 namespace guiguoershao;
 
+use guiguoershao\Container\Container;
+use guiguoershao\Protocol\IBootstrap;
+
 /**
- * 启动程序
+ * 应用程序
  * Class Application
  * @package guiguoershao
  */
@@ -24,8 +27,39 @@ class Application
      */
     private static $container;
 
-    public function bootstrap()
+    /**
+     * 启动程序
+     * @param IBootstrap $bootstrap
+     * @return $this
+     */
+    public function bootstrap(IBootstrap $bootstrap)
     {
+        $bootstrap->boot();
+        return $this;
+    }
 
+    /**
+     * 获取容器实例
+     * @return Container
+     */
+    public static function containerInstance()
+    {
+        if (!(self::$container instanceof Container)) {
+            self::$container = new Container(microtime(true));
+        }
+        return self::$container;
+    }
+
+    public function run()
+    {
+        static $runFlag = false;
+
+        if (!$runFlag) {
+            $runFlag = true;
+            try {
+                self::containerInstance();
+            } catch (\Throwable $exception) {
+            }
+        }
     }
 }

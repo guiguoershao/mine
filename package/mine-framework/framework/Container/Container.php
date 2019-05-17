@@ -61,6 +61,12 @@ class Container
         return $this;
     }
 
+    /**
+     * 生成实例
+     * @param $key
+     * @param null $default
+     * @return mixed|null
+     */
     final public function make($key, $default = null)
     {
         if (isset($this->instanceTree[$key])) {
