@@ -13,6 +13,7 @@ namespace guiguoershao;
 
 use guiguoershao\Container\Container;
 use guiguoershao\Protocol\IBootstrap;
+use guiguoershao\Route\Route;
 
 /**
  * 应用程序
@@ -57,7 +58,8 @@ class Application
         if (!$runFlag) {
             $runFlag = true;
             try {
-                self::containerInstance();
+                self::containerInstance()
+                    ->make(Route::class);
             } catch (\Throwable $exception) {
             }
         }

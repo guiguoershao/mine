@@ -8,6 +8,7 @@
 
 namespace guiguoershao\Route;
 
+use guiguoershao\Http\Http;
 use function GuzzleHttp\Psr7\str;
 
 class RouteCollection
@@ -89,5 +90,73 @@ class RouteCollection
         }
         call_user_func($closure);
         self::$groupOffset = [];
+    }
+
+    public function dispatch(Http $http)
+    {
+        $requestMethod = strtoupper($http->server()->getMethod());
+
+        list($code, $route) = self::_dispatch($requestMethod, $http->server()->getUri());
+    }
+
+    private static function _dispatch($requestMethod, $uri)
+    {
+        list($uri) = explode('?', $uri);
+
+        if (empty(self::$routesArr) && !isset(self::$routesArr[$requestMethod])) {
+            return null;
+        }
+
+        $any = isset(self::$routesArr['ANY']) ? self::$routesArr['ANY'] : [];
+
+    }
+
+    /**
+     * 解析路由
+     * @param $mapUriArr
+     * @param $uri
+     * @return array
+     */
+    private static function parsePath($mapUriArr, $uri)
+    {
+        $route = null;
+        $uri = str_replace('index.php', '', $uri);
+        $uri = ($uri != '/') ? trim($uri, '/') : $uri;
+        if (isset($mapUriArr[$uri])) {
+            $route = $mapUriArr[$uri];
+            $route['param'] = [];
+        } else {
+            $uriArr = explode('/', $uri);
+            $uriLen = count($uriArr);
+            foreach ($mapUriArr as $item => $value) {
+                $expUriArr = explode('/', $item);
+                if (count($expUriArr) == $uriLen && !empty($expUriArr[0]) && preg_match('/\{[^S]+\}/si', $item)) {
+                    $flag = true;
+                    $param = [];
+                    foreach ($expUriArr as $k => $v) {
+                        $v = ltrim($v, "{");
+                        $v = rtrim($v, "}");
+                        $expArr = explode(':', $v);
+                        if (count($expArr) == 2) {
+                            $regex = $expArr[1];
+                        } else {
+                            $regex = "/^[\\w_]+$/si";
+                        }
+                        if (preg_match($regex, $uriArr[$k], $matches)) {
+                            $param[$expArr[0]] = $uriArr[$k];
+                        } else {
+                            $flag = false;
+                            break;
+                        }
+                    }
+                    if ($flag) {
+                        $route = $value;
+                        $route['param'] = $param;
+                        break;
+                    }
+                }
+            }
+        }
+        return $route;
     }
 }

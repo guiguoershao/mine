@@ -9,6 +9,7 @@
 namespace guiguoershao\Route;
 
 
+use guiguoershao\Http\Http;
 use guiguoershao\Protocol\IRoute;
 
 class Route implements IRoute
@@ -120,9 +121,13 @@ class Route implements IRoute
         $this->routes->group($group, $closure);
     }
 
-    public function dispatch()
+    /**
+     * 路由调度
+     * @param Http $http
+     */
+    public function dispatch(Http $http)
     {
-
+        $this->routes->dispatch($http);
     }
 
     /**
