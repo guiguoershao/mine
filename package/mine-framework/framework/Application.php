@@ -51,6 +51,9 @@ class Application
         return self::$container;
     }
 
+    /**
+     * 启动
+     */
     public function run()
     {
         static $runFlag = false;
@@ -59,8 +62,10 @@ class Application
             $runFlag = true;
             try {
                 self::containerInstance()
-                    ->make(Route::class);
+                    ->route()
+                    ->dispatch(self::containerInstance()->http());
             } catch (\Throwable $exception) {
+                dump($exception);
             }
         }
     }

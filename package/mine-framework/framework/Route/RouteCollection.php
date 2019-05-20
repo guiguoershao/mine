@@ -9,6 +9,7 @@
 namespace guiguoershao\Route;
 
 use guiguoershao\Http\Http;
+use guiguoershao\Reflect\Reflect;
 use function GuzzleHttp\Psr7\str;
 
 class RouteCollection
@@ -92,23 +93,87 @@ class RouteCollection
         self::$groupOffset = [];
     }
 
+    /**
+     * 路由调度
+     * @param Http $http
+     */
     public function dispatch(Http $http)
     {
         $requestMethod = strtoupper($http->server()->getMethod());
 
         list($code, $route) = self::_dispatch($requestMethod, $http->server()->getUri());
+
+        switch ($code) {
+            case 404:
+                $http->noFound();
+                break;
+            case 405:
+                $http->methodIsNotAllow();
+                break;
+            case 200:
+                // 如果存在中间件
+                if (!empty($route['middleware'])) {
+                    foreach ($route['middleware'] as $item => $value) {
+                        //  中间件处理方法
+                    }
+                }
+                if ($route['action'] instanceof \Closure) {
+                    $http->callFunction($route['action']);
+                } else {
+                    $routeArr = explode('@', $route['action']);
+                    if (count($routeArr) == 2) {
+                        list($controller, $param) = self::parseClass(self::$rootNamespace.$routeArr[0], $routeArr[1], $route['param']);
+                        $http->callController($controller, $routeArr[1], $param);
+                    } else {
+                        $http->noFound();
+                    }
+                }
+                break;
+            default:
+                $http->noFound();
+                break;
+        }
     }
 
+    protected static function parseClass($class, $method, $param)
+    {
+        //  对象实例化参数
+        $constructParamArr = [];
+        $reflectClass = new \ReflectionClass($class);
+        $reflectConstructMethod = $reflectClass->getConstructor();
+        $reflect = new Reflect();
+        if ($reflectConstructMethod) {
+            $constructParamArr = $reflect->reflectParam($reflectClass, $reflectConstructMethod->getName(), $param);
+        }
+
+        return [$reflectClass->newInstanceArgs($constructParamArr), $reflect->reflectParam($reflectClass, $method, $param)];
+    }
+
+    /**
+     * 调度
+     * @param $requestMethod
+     * @param $uri
+     * @return array
+     */
     private static function _dispatch($requestMethod, $uri)
     {
         list($uri) = explode('?', $uri);
 
         if (empty(self::$routesArr) && !isset(self::$routesArr[$requestMethod])) {
-            return null;
+            return [405, null];
         }
 
         $any = isset(self::$routesArr['ANY']) ? self::$routesArr['ANY'] : [];
 
+        $routeMethodArr = isset(self::$routesArr[$requestMethod]) ? self::$routesArr[$requestMethod] : [];
+
+        $route = self::parsePath($routeMethodArr + $any, $uri);
+
+        if (empty($route)) {
+            return [404, null];
+        }
+
+        return [200, $route];
     }
 
     /**

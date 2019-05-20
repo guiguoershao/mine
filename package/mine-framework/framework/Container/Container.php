@@ -11,7 +11,9 @@
 
 namespace guiguoershao\Container;
 
+use guiguoershao\Http\Http;
 use guiguoershao\Protocol\IServiceProvider;
+use guiguoershao\Route\Route;
 
 /**
  * 全局注册容器
@@ -80,6 +82,23 @@ class Container
         }
 
         return $default;
+    }
+
+    /**
+     * 路由
+     * @return Route
+     */
+    public function route() : Route
+    {
+        return $this->make(Route::class);
+    }
+
+    /**
+     * @return Http
+     */
+    public function http() : Http
+    {
+        return $this->make(Http::class);
     }
 
     /**

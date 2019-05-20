@@ -39,7 +39,7 @@ class Route implements IRoute
      */
     public function get($uri, $action = null)
     {
-        // TODO: Implement get() method.
+        $this->addRoute('GET', $uri, $action);
     }
 
     /**
@@ -49,7 +49,7 @@ class Route implements IRoute
      */
     public function post($uri, $action = null)
     {
-        // TODO: Implement post() method.
+        $this->addRoute('POST', $uri, $action);
     }
 
     /**
@@ -59,7 +59,7 @@ class Route implements IRoute
      */
     public function patch($uri, $action = null)
     {
-        // TODO: Implement patch() method.
+        $this->addRoute('PATCH', $uri, $action);
     }
 
     /**
@@ -69,7 +69,7 @@ class Route implements IRoute
      */
     public function put($uri, $action = null)
     {
-        // TODO: Implement put() method.
+        $this->addRoute('PUT', $uri, $action);
     }
 
     /**
@@ -79,7 +79,7 @@ class Route implements IRoute
      */
     public function delete($uri, $action = null)
     {
-        // TODO: Implement delete() method.
+        $this->addRoute('DELETE', $uri, $action);
     }
 
     /**
@@ -89,7 +89,7 @@ class Route implements IRoute
      */
     public function options($uri, $action = null)
     {
-        // TODO: Implement options() method.
+        $this->addRoute('OPTIONS', $uri, $action);
     }
 
     /**
@@ -99,7 +99,7 @@ class Route implements IRoute
      */
     public function any($uri, $action = null)
     {
-        // TODO: Implement any() method.
+        $this->addRoute('ANY', $uri, $action);
     }
 
     public function addRoute($method, $uri, $action)
