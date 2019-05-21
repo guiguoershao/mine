@@ -16,7 +16,7 @@
     ],
     "psr-4": {
       "guiguoershao\\": "framework",
-      "app\\": "app",
+      "App\\": "app",
       "": "extend"
     }
   },

@@ -77,7 +77,7 @@ class Container
 
         if (array_key_exists($key, $this->registerTree)) {
             $closure = $this->registerTree[$key];
-            $this->instanceTree[$key] = $closure;
+            $this->instanceTree[$key] = $closure();
             return $this->instanceTree[$key];
         }
 

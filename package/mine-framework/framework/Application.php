@@ -35,7 +35,7 @@ class Application
      */
     public function bootstrap(IBootstrap $bootstrap)
     {
-        $bootstrap->boot();
+        $bootstrap->boot(self::containerInstance());
         return $this;
     }
 
@@ -57,7 +57,6 @@ class Application
     public function run()
     {
         static $runFlag = false;
-
         if (!$runFlag) {
             $runFlag = true;
             try {

@@ -19,17 +19,27 @@ class Route implements IRoute
      */
     private static $requestMethod = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'ANY'];
 
+    private static $instance;
+
     /**
      * @var RouteCollection
      */
-    private $routes;
+    private static $routes;
 
     /**
      * Route constructor.
      */
     public function __construct()
     {
-        $this->routes = new RouteCollection();
+        if (!self::$routes instanceof RouteCollection) {
+            self::$routes = new RouteCollection();
+        }
+        self::$instance = $this;
+    }
+
+    public static function getInstance()
+    {
+        return self::$instance;
     }
 
     /**
@@ -108,7 +118,16 @@ class Route implements IRoute
             return false;
         }
 
-        $this->routes->add($method, $uri, $action);
+        self::$routes->add($method, $uri, $action);
+    }
+
+    /**
+     * @param $rootNamespace
+     * @return $this
+     */
+    public static function setRootNamespace($rootNamespace)
+    {
+        RouteCollection::$rootNamespace = $rootNamespace;
     }
 
     /**
@@ -118,7 +137,7 @@ class Route implements IRoute
      */
     public function group(array $group, \Closure $closure)
     {
-        $this->routes->group($group, $closure);
+        self::$routes->group($group, $closure);
     }
 
     /**
@@ -127,7 +146,7 @@ class Route implements IRoute
      */
     public function dispatch(Http $http)
     {
-        $this->routes->dispatch($http);
+        self::$routes->dispatch($http);
     }
 
     /**
