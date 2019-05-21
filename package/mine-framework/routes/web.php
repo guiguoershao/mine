@@ -2,7 +2,7 @@
 
 use guiguoershao\Route\Route;
 
-Route::getInstance()->get('/', function (\guiguoershao\Http\Request $request) {
-    print_r($request->input()->get('a'));
+
+Route::get('/', function () {
     echo 'Hello World';
 });

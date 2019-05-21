@@ -9,7 +9,7 @@
 namespace guiguoershao\Http;
 
 
-use guiguoershao\Interfaces\ISet;
+use guiguoershao\Http\Interfaces\ISet;
 
 class Header implements ISet
 {
@@ -18,6 +18,7 @@ class Header implements ISet
      * @var
      */
     protected static $header;
+
 
     public function __construct()
     {

@@ -16,47 +16,47 @@ interface IRoute
      * @param null $action
      * @return mixed
      */
-    public function get($uri, $action = null);
+    public static function get($uri, $action = null);
 
     /**
      * @param $uri
      * @param null $action
      * @return mixed
      */
-    public function post($uri, $action = null);
+    public static function post($uri, $action = null);
 
     /**
      * @param $uri
      * @param null $action
      * @return mixed
      */
-    public function patch($uri, $action = null);
+    public static function patch($uri, $action = null);
 
     /**
      * @param $uri
      * @param null $action
      * @return mixed
      */
-    public function put($uri, $action = null);
+    public static function put($uri, $action = null);
 
     /**
      * @param $uri
      * @param null $action
      * @return mixed
      */
-    public function delete($uri, $action = null);
+    public static function delete($uri, $action = null);
 
     /**
      * @param $uri
      * @param null $action
      * @return mixed
      */
-    public function options($uri, $action = null);
+    public static function options($uri, $action = null);
 
     /**
      * @param $uri
      * @param null $action
      * @return mixed
      */
-    public function any($uri, $action = null);
+    public static function any($uri, $action = null);
 }

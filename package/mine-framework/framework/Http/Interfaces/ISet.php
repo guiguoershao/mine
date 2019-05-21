@@ -6,7 +6,7 @@
  * Time: 下午4:49
  */
 
-namespace guiguoershao\Interfaces;
+namespace guiguoershao\Http\Interfaces;
 
 
 Interface ISet

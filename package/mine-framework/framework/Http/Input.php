@@ -9,7 +9,7 @@
 namespace guiguoershao\Http;
 
 
-use guiguoershao\Interfaces\ISet;
+use guiguoershao\Http\Interfaces\ISet;
 
 class Input implements ISet
 {

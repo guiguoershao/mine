@@ -9,7 +9,7 @@
 namespace guiguoershao\Http;
 
 
-use guiguoershao\Interfaces\ISet;
+use guiguoershao\Http\Interfaces\ISet;
 
 class Server implements ISet
 {
@@ -125,7 +125,7 @@ class Server implements ISet
      */
     public function get(string $key)
     {
-        // TODO: Implement get() method.
+        return isset($_SERVER[$key]) ? $_SERVER[$key] : null;
     }
 
     /**

@@ -12,14 +12,12 @@ namespace guiguoershao\Route;
 use guiguoershao\Http\Http;
 use guiguoershao\Protocol\IRoute;
 
-class Route implements IRoute
+class Route
 {
     /**
      * @var array
      */
     private static $requestMethod = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'ANY'];
-
-    private static $instance;
 
     /**
      * @var RouteCollection
@@ -34,12 +32,17 @@ class Route implements IRoute
         if (!self::$routes instanceof RouteCollection) {
             self::$routes = new RouteCollection();
         }
-        self::$instance = $this;
     }
 
-    public static function getInstance()
+    /**
+     * @return RouteCollection
+     */
+    private static function routeCollection() : RouteCollection
     {
-        return self::$instance;
+        if (!self::$routes instanceof RouteCollection) {
+            self::$routes = new RouteCollection();
+        }
+        return self::$routes;
     }
 
     /**
@@ -47,9 +50,9 @@ class Route implements IRoute
      * @param null $action
      * @return mixed
      */
-    public function get($uri, $action = null)
+    public static function get($uri, $action = null)
     {
-        $this->addRoute('GET', $uri, $action);
+        self::addRoute('GET', $uri, $action);
     }
 
     /**
@@ -57,9 +60,9 @@ class Route implements IRoute
      * @param null $action
      * @return mixed
      */
-    public function post($uri, $action = null)
+    public static function post($uri, $action = null)
     {
-        $this->addRoute('POST', $uri, $action);
+        self::addRoute('POST', $uri, $action);
     }
 
     /**
@@ -67,9 +70,9 @@ class Route implements IRoute
      * @param null $action
      * @return mixed
      */
-    public function patch($uri, $action = null)
+    public static function patch($uri, $action = null)
     {
-        $this->addRoute('PATCH', $uri, $action);
+        self::addRoute('PATCH', $uri, $action);
     }
 
     /**
@@ -77,9 +80,9 @@ class Route implements IRoute
      * @param null $action
      * @return mixed
      */
-    public function put($uri, $action = null)
+    public static function put($uri, $action = null)
     {
-        $this->addRoute('PUT', $uri, $action);
+        self::addRoute('PUT', $uri, $action);
     }
 
     /**
@@ -87,9 +90,9 @@ class Route implements IRoute
      * @param null $action
      * @return mixed
      */
-    public function delete($uri, $action = null)
+    public static function delete($uri, $action = null)
     {
-        $this->addRoute('DELETE', $uri, $action);
+        self::addRoute('DELETE', $uri, $action);
     }
 
     /**
@@ -97,9 +100,9 @@ class Route implements IRoute
      * @param null $action
      * @return mixed
      */
-    public function options($uri, $action = null)
+    public static function options($uri, $action = null)
     {
-        $this->addRoute('OPTIONS', $uri, $action);
+        self::addRoute('OPTIONS', $uri, $action);
     }
 
     /**
@@ -107,18 +110,24 @@ class Route implements IRoute
      * @param null $action
      * @return mixed
      */
-    public function any($uri, $action = null)
+    public static function any($uri, $action = null)
     {
-        $this->addRoute('ANY', $uri, $action);
+        self::addRoute('ANY', $uri, $action);
     }
 
-    public function addRoute($method, $uri, $action)
+    /**
+     * @param $method
+     * @param $uri
+     * @param $action
+     * @return bool
+     */
+    public static function addRoute($method, $uri, $action)
     {
         if (self::verify($method) == false) {
             return false;
         }
 
-        self::$routes->add($method, $uri, $action);
+        self::routeCollection()->add($method, $uri, $action);
     }
 
     /**
@@ -135,9 +144,9 @@ class Route implements IRoute
      * @param array $group
      * @param \Closure $closure
      */
-    public function group(array $group, \Closure $closure)
+    public static function group(array $group, \Closure $closure)
     {
-        self::$routes->group($group, $closure);
+        self::routeCollection()->group($group, $closure);
     }
 
     /**
@@ -146,7 +155,7 @@ class Route implements IRoute
      */
     public function dispatch(Http $http)
     {
-        self::$routes->dispatch($http);
+        self::routeCollection()->dispatch($http);
     }
 
     /**

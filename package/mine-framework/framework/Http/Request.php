@@ -8,7 +8,6 @@
 
 namespace guiguoershao\Http;
 
-
 class Request
 {
     private $uri;

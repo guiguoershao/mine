@@ -51,7 +51,7 @@ class RouteCollection
      */
     private static function addRoutes($method, $uri, $action)
     {
-        if (!self::$routesArr[$method]) {
+        if (!isset(self::$routesArr[$method])) {
             self::$routesArr[$method] = [];
         }
 
@@ -75,7 +75,6 @@ class RouteCollection
                 }
             }
         }
-
         return true;
     }
 
@@ -102,7 +101,6 @@ class RouteCollection
         $requestMethod = strtoupper($http->server()->getMethod());
 
         list($code, $route) = self::_dispatch($requestMethod, $http->server()->getUri());
-
         switch ($code) {
             case 404:
                 $http->noFound();
@@ -162,7 +160,6 @@ class RouteCollection
         if (empty(self::$routesArr) && !isset(self::$routesArr[$requestMethod])) {
             return [405, null];
         }
-
         $any = isset(self::$routesArr['ANY']) ? self::$routesArr['ANY'] : [];
 
         $routeMethodArr = isset(self::$routesArr[$requestMethod]) ? self::$routesArr[$requestMethod] : [];
