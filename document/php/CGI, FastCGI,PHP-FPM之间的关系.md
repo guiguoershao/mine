@@ -1,7 +1,16 @@
 ### CGI, FastCGI,PHP-FPM之间的关系
 * 来源 https://segmentfault.com/a/1190000008627499
 * 来源 https://segmentfault.com/a/1190000004006596
+* 来源 https://segmentfault.com/a/1190000004638171
 ## Web Service(Nginx、Apache)、FastCGI、PHP-CGI与PHP-FPM概念、之间关系和处理流程
+* CGI：Common Gateway Interface 公共网关接口，web服务器和脚本语言通信的一个标准、
+接口、协议【协议】
+
+* FastCGI：CGI协议的升级版【协议】
+
+* PHP-CGI: 实现了CGI接口协议的PHP脚本解析器【程序】
+
+* PHP-FPM: 管理和调度php-cgi进程，进而实现了FastCGI接口协议的程序【程序】
 
 ### 名词解释说明
 
