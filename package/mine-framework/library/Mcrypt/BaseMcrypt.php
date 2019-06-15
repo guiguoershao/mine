@@ -17,7 +17,7 @@ abstract class BaseMcrypt
      * 偏移量
      * @var
      */
-    protected $hexIv = '1234567890asdfg';
+    protected $hexIv = '1234567890asdfgh';
 
     public function __construct($key, $hexIv = '')
     {

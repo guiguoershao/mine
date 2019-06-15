@@ -57,6 +57,7 @@ class Aes extends BaseMcrypt
 
     protected function getHexIv()
     {
+        return $this->hexIv;
         $byte = $this->size / 8;
         $byte = 16;
         $ivLen = strlen($this->hexIv);
