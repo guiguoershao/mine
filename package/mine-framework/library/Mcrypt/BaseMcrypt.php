@@ -19,7 +19,7 @@ abstract class BaseMcrypt
      */
     protected $hexIv = '1234567890asdfgh';
 
-    public function __construct($key, $hexIv = '')
+    public function __construct($key = '', $hexIv = '')
     {
 //        $this->key = hash('sha256', $key, true); // key生成新地摘要
         $this->key = $key;
