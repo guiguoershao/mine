@@ -7,6 +7,8 @@ Route::get('/', function () {
     echo 'Hello World';
 });
 
+Route::get('home', 'HomeController@index');
+
 Route::get('/coroutines', function () {
     dump(time());
     ob_implicit_flush(1);
