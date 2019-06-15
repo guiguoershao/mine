@@ -7,8 +7,23 @@ namespace Library\Mcrypt;
 abstract class BaseMcrypt
 {
 
-    public function __construct()
+    /**
+     * 密钥
+     * @var
+     */
+    protected $key;
+
+    /**
+     * 偏移量
+     * @var
+     */
+    protected $hexIv = '1234567890asdfg';
+
+    public function __construct($key, $hexIv = '')
     {
+//        $this->key = hash('sha256', $key, true); // key生成新地摘要
+        $this->key = $key;
+        $this->hexIv = empty($hexIv) ? $this->hexIv : $hexIv;
     }
 
     /**

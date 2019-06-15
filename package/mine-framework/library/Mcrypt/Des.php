@@ -7,23 +7,28 @@ namespace Library\Mcrypt;
 class Des extends BaseMcrypt
 {
 
+    protected $method = '';
+
+    public function setMethod($method)
+    {
+        $this->method = $method;
+        return $this;
+    }
     /**
      * @param $string
      * @param $method
-     * @param $key
-     * @param $iv
      * @return string
      * @throws McryptException
      */
-    public function encrypt(string $string, $method, $key, $iv)
+    public function encrypt($input)
     {
-        $this->isOpenssl()->isHasMethod($method);
-        return openssl_encrypt($string, $method, $key, 0, $iv);
+        $this->isOpenssl()->isHasMethod($this->method);
+        return openssl_encrypt($input, $this->method, $this->key, 0, $this->hexIv);
     }
 
-    public function decrypt(string $enString, $method, $key, $iv)
+    public function decrypt($input)
     {
-        $this->isOpenssl()->isHasMethod($method);
-        return openssl_decrypt( $enString, $method, $key, 0, $iv );
+        $this->isOpenssl()->isHasMethod($this->method);
+        return openssl_decrypt( $input, $this->method, $this->key, 0, $this->hexIv );
     }
 }
