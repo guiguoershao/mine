@@ -19,15 +19,16 @@ class Http extends Request
      */
     public function callController($class, $action, $params = array())
     {
-        call_user_func_array(array($class, $action), $params);
+        return call_user_func_array(array($class, $action), $params);
     }
 
     /**
      * @param $function
+     * @return mixed
      */
     public function callFunction($function)
     {
-        call_user_func($function);
+        return call_user_func($function);
     }
 
     /**

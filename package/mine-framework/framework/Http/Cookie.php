@@ -13,10 +13,10 @@ use guiguoershao\Http\Interfaces\ISet;
 
 class Cookie implements ISet
 {
-    private static $cookie = [];
+    private $cookie = [];
     public function __construct(array $cookie = [])
     {
-        self::$cookie = empty($cookie) ? $_COOKIE : $cookie;
+        $this->cookie = empty($cookie) ? $_COOKIE : $cookie;
     }
 
     /**
@@ -26,7 +26,7 @@ class Cookie implements ISet
      */
     public function isExists(string $key)
     {
-        return isset(self::$cookie[$key]) ? true : false;
+        return isset($this->cookie[$key]) ? true : false;
     }
 
     /**
@@ -36,7 +36,7 @@ class Cookie implements ISet
      */
     public function get(string $key)
     {
-        return isset(self::$cookie[$key]) ? self::$cookie[$key] : null;
+        return isset($this->cookie[$key]) ? $this->cookie[$key] : null;
     }
 
     /**
@@ -45,7 +45,7 @@ class Cookie implements ISet
      */
     public function getAll()
     {
-        return self::$cookie;
+        return $this->cookie;
     }
 
     /**
@@ -57,12 +57,12 @@ class Cookie implements ISet
      */
     public function set(string $key, $val, bool $isOverwrite = true)
     {
-        if (isset(self::$cookie[$key])) {
+        if (isset($this->cookie[$key])) {
             if ($isOverwrite) {
-                self::$cookie[$key] = $val;
+                $this->cookie[$key] = $val;
             }
         } else {
-            self::$cookie[$key] = $val;
+            $this->cookie[$key] = $val;
         }
         return $this;
     }
@@ -74,8 +74,8 @@ class Cookie implements ISet
      */
     public function clear(string $key = null)
     {
-        if (isset(self::$cookie[$key])) {
-            self::$cookie[$key] = null;
+        if (isset($this->cookie[$key])) {
+            $this->cookie[$key] = null;
         };
         return $this;
     }
@@ -87,8 +87,8 @@ class Cookie implements ISet
      */
     public function destroy(string $key = null)
     {
-        if (isset(self::$cookie[$key])) {
-            unset(self::$cookie[$key]);
+        if (isset($this->cookie[$key])) {
+            unset($this->cookie[$key]);
         };
         return $this;
     }

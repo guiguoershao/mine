@@ -121,7 +121,7 @@ class RouteCollection
                     $routeArr = explode('@', $route['action']);
                     if (count($routeArr) == 2) {
                         list($controller, $param) = self::parseClass(self::$rootNamespace.$routeArr[0], $routeArr[1], $route['param']);
-                        $http->callController($controller, $routeArr[1], $param);
+                        return $http->callController($controller, $routeArr[1], $param);
                     } else {
                         $http->noFound();
                     }

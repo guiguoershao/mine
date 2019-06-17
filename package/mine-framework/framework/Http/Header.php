@@ -17,7 +17,7 @@ class Header implements ISet
      *
      * @var
      */
-    protected static $header;
+    protected $header;
 
 
     public function __construct(array $header = [])
@@ -34,9 +34,9 @@ class Header implements ISet
                     $headers[substr($name, 5, strlen($name))] = $value;
                 }
             }
-            self::$header = $headers;
+            $this->header = $headers;
         } else {
-            self::$header = $header;
+            $this->header = $header;
         }
         return $this;
     }
@@ -48,7 +48,7 @@ class Header implements ISet
      */
     public function isExists(string $key)
     {
-        return isset(self::$header[$key]) ? true : false;
+        return isset($this->header[$key]) ? true : false;
     }
 
     /**
@@ -58,7 +58,7 @@ class Header implements ISet
      */
     public function get(string $key)
     {
-        return isset(self::$header[$key]) ? self::$header[$key] : null;
+        return isset($this->header[$key]) ? $this->header[$key] : null;
     }
 
     /**
@@ -67,7 +67,7 @@ class Header implements ISet
      */
     public function getAll()
     {
-        return self::$header;
+        return $this->header;
     }
 
     /**
@@ -79,12 +79,12 @@ class Header implements ISet
      */
     public function set(string $key, $val, bool $isOverwrite = true)
     {
-        if (isset(self::$header[$key])) {
+        if (isset($this->header[$key])) {
             if ($isOverwrite) {
-                self::$header[$key] = $val;
+                $this->header[$key] = $val;
             }
         } else {
-            self::$header[$key] = $val;
+            $this->header[$key] = $val;
         }
         return $this;
     }
@@ -96,8 +96,8 @@ class Header implements ISet
      */
     public function clear(string $key = null)
     {
-        if (isset(self::$header[$key])) {
-            self::$header[$key] = null;
+        if (isset($this->header[$key])) {
+            $this->header[$key] = null;
         };
         return $this;
     }
@@ -109,8 +109,8 @@ class Header implements ISet
      */
     public function destroy(string $key = null)
     {
-        if (isset(self::$header[$key])) {
-            unset(self::$header[$key]);
+        if (isset($this->header[$key])) {
+            unset($this->header[$key]);
         };
         return $this;
     }

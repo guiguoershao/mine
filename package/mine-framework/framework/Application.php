@@ -35,7 +35,7 @@ class Application
      */
     public function bootstrap(IBootstrap $bootstrap)
     {
-        $bootstrap->boot(self::containerInstance());
+        $bootstrap->boot(self::containerInstance(true));
         return $this;
     }
 
@@ -43,8 +43,12 @@ class Application
      * 获取容器实例
      * @return Container
      */
-    public static function containerInstance()
+    public static function containerInstance($isFirst = false)
     {
+        if ($isFirst) {
+            self::$container = new Container(microtime(true));
+            return self::$container;
+        }
         if (!(self::$container instanceof Container)) {
             self::$container = new Container(microtime(true));
         }
@@ -66,6 +70,7 @@ class Application
             } catch (\Throwable $exception) {
                 dump($exception);
             }
+            $runFlag = false;
         }
     }
 }

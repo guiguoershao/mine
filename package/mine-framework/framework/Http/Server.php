@@ -14,7 +14,7 @@ use guiguoershao\Http\Interfaces\ISet;
 class Server implements ISet
 {
 
-    protected static $server;
+    protected $server;
 
     public function __construct(array $server = [])
     {
@@ -23,7 +23,7 @@ class Server implements ISet
 
     private function _init(array $server = [])
     {
-        self::$server = empty($server) ? $_SERVER : $server;
+        $this->server = empty($server) ? $_SERVER : $server;
     }
 
     /**
@@ -96,7 +96,7 @@ class Server implements ISet
      */
     public function getServerIp()
     {
-        if (self::$server) {
+        if ($this->server) {
             if ($this->isExists('SERVER_ADDR')) {
                 $server_ip = $this->get('SERVER_ADDR');
             } else {
@@ -115,7 +115,7 @@ class Server implements ISet
      */
     public function isExists(string $key)
     {
-        return isset(self::$server[$key]) ? true : false;
+        return isset($this->server[$key]) ? true : false;
     }
 
     /**
@@ -125,7 +125,7 @@ class Server implements ISet
      */
     public function get(string $key)
     {
-        return isset(self::$server[$key]) ? self::$server[$key] : null;
+        return isset($this->server[$key]) ? $this->server[$key] : null;
     }
 
     /**
@@ -134,7 +134,7 @@ class Server implements ISet
      */
     public function getAll()
     {
-        return self::$server;
+        return $this->server;
     }
 
     /**
@@ -146,12 +146,12 @@ class Server implements ISet
      */
     public function set(string $key, $val, bool $isOverwrite = true)
     {
-        if (isset(self::$server[$key])) {
+        if (isset($this->server[$key])) {
             if ($isOverwrite) {
-                self::$server[$key] = $val;
+                $this->server[$key] = $val;
             }
         } else {
-            self::$server[$key] = $val;
+            $this->server[$key] = $val;
         }
         return $this;
     }
@@ -163,8 +163,8 @@ class Server implements ISet
      */
     public function clear(string $key = null)
     {
-        if (isset(self::$server[$key])) {
-            self::$server[$key] = null;
+        if (isset($this->server[$key])) {
+            $this->server[$key] = null;
         };
         return $this;
     }
@@ -176,8 +176,8 @@ class Server implements ISet
      */
     public function destroy(string $key = null)
     {
-        if (isset(self::$server[$key])) {
-            unset(self::$server[$key]);
+        if (isset($this->server[$key])) {
+            unset($this->server[$key]);
         };
         return $this;
     }

@@ -152,10 +152,11 @@ class Route
     /**
      * 路由调度
      * @param Http $http
+     * @return mixed
      */
     public function dispatch(Http $http)
     {
-        self::routeCollection()->dispatch($http);
+        return self::routeCollection()->dispatch($http);
     }
 
     /**

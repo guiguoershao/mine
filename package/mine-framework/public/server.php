@@ -3,10 +3,7 @@ ini_set("display_errors", "On");
 
 error_reporting(E_ALL | E_STRICT);
 
-//  根路径
-define('__ROOT__', dirname(__DIR__));
-define('__APP__', __ROOT__ . '/app');
-require __ROOT__ . '/vendor/autoload.php';
+
 /**
  * 简单的swoole http 服务器实例
  * User: guola
@@ -37,7 +34,7 @@ function startSwHttpServer($setting)
     $webserver->on('Start', function (http_server $server) {
         echo 'Start...', "\n";
         // 重新设置进程名称
-        swoole_set_process_name('swhttp-master');
+        swoole_set_process_name('sw-http-master');
     });
 
     /**
@@ -46,7 +43,7 @@ function startSwHttpServer($setting)
     $webserver->on('ManagerStart', function (http_server $server) {
         echo 'manager start...', "\n";
         // 重新设置进程名称
-        swoole_set_process_name('swhttp-manager');
+        swoole_set_process_name('sw-http-manager');
     });
 
     /**
@@ -124,6 +121,11 @@ function onRequest(\Swoole\Http\Request $request, \Swoole\Http\Response $respons
 
 function onWorkerStart(http_server $server, $worker_id)
 {
+    //  根路径
+    define('__ROOT__', dirname(__DIR__));
+    define('__APP__', __ROOT__ . '/app');
+    require __ROOT__ . '/vendor/autoload.php';
+    require __ROOT__ . '/routes/web.php';
     echo 'onWorkerStart...', "\n";
 }
 

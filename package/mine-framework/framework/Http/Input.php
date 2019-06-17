@@ -13,7 +13,7 @@ use guiguoershao\Http\Interfaces\ISet;
 
 class Input implements ISet
 {
-    protected static $input = [];
+    protected $input = [];
     protected static $instance;
     protected static $offsetRaw;
 
@@ -25,9 +25,9 @@ class Input implements ISet
     {
         if (!self::$instance) {
             if (empty($input)) {
-                self::$input = array_merge($_POST, $_GET);
+                $this->input = array_merge($_POST, $_GET);
             } else {
-                self::$input = $input;
+                $this->input = $input;
             }
             self::$instance = $this;
         }
@@ -47,7 +47,7 @@ class Input implements ISet
                     break;
             }
             if (is_array($raw)) {
-                $this->input = array_merge(self::$input, $raw);
+                $this->input = array_merge($this->input, $raw);
             }
         }
         return $this;
@@ -60,7 +60,7 @@ class Input implements ISet
      */
     public function isExists(string $key)
     {
-        return isset(self::$input[$key]) ? true : false;
+        return isset($this->input[$key]) ? true : false;
     }
 
     /**
@@ -70,7 +70,7 @@ class Input implements ISet
      */
     public function get(string $key)
     {
-        return isset(self::$input[$key]) ? self::$input[$key] : null;
+        return isset($this->input[$key]) ? $this->input[$key] : null;
     }
 
     /**
@@ -79,7 +79,7 @@ class Input implements ISet
      */
     public function getAll()
     {
-        return self::$input;
+        return $this->input;
     }
 
     /**
@@ -91,12 +91,12 @@ class Input implements ISet
      */
     public function set(string $key, $val, bool $isOverwrite = true)
     {
-        if (isset(self::$input[$key])) {
+        if (isset($this->input[$key])) {
             if ($isOverwrite) {
-                self::$input[$key] = $val;
+                $this->input[$key] = $val;
             }
         } else {
-            self::$input[$key] = $val;
+            $this->input[$key] = $val;
         }
         return $this;
     }
@@ -108,8 +108,8 @@ class Input implements ISet
      */
     public function clear(string $key = null)
     {
-        if (isset(self::$input[$key])) {
-            self::$input[$key] = null;
+        if (isset($this->input[$key])) {
+            $this->input[$key] = null;
         };
         return $this;
     }
@@ -121,8 +121,8 @@ class Input implements ISet
      */
     public function destroy(string $key = null)
     {
-        if (isset(self::$input[$key])) {
-            unset(self::$input[$key]);
+        if (isset($this->input[$key])) {
+            unset($this->input[$key]);
         };
         return $this;
     }
