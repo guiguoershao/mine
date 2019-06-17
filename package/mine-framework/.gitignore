@@ -19,3 +19,5 @@ npm-debug.log
 yarn-error.log
 .env
 composer.lock
+public/swhttpserver.pid
+public/swlog.txt

@@ -13,15 +13,20 @@ use guiguoershao\Http\Interfaces\ISet;
 
 class Cookie implements ISet
 {
+    private static $cookie = [];
+    public function __construct(array $cookie = [])
+    {
+        self::$cookie = empty($cookie) ? $_COOKIE : $cookie;
+    }
 
     /**
      * 判断键是否存在
      * @param string $key
-     * @return mixed
+     * @return bool
      */
     public function isExists(string $key)
     {
-        return isset($_COOKIE[$key]) ? true : false;
+        return isset(self::$cookie[$key]) ? true : false;
     }
 
     /**
@@ -31,7 +36,7 @@ class Cookie implements ISet
      */
     public function get(string $key)
     {
-        // TODO: Implement get() method.
+        return isset(self::$cookie[$key]) ? self::$cookie[$key] : null;
     }
 
     /**
@@ -40,7 +45,7 @@ class Cookie implements ISet
      */
     public function getAll()
     {
-        // TODO: Implement getAll() method.
+        return self::$cookie;
     }
 
     /**
@@ -50,9 +55,16 @@ class Cookie implements ISet
      * @param bool $isOverwrite 存在时候是否覆盖
      * @return mixed
      */
-    public function set(string $key, $val, bool $isOverwrite)
+    public function set(string $key, $val, bool $isOverwrite = true)
     {
-        // TODO: Implement set() method.
+        if (isset(self::$cookie[$key])) {
+            if ($isOverwrite) {
+                self::$cookie[$key] = $val;
+            }
+        } else {
+            self::$cookie[$key] = $val;
+        }
+        return $this;
     }
 
     /**
@@ -62,7 +74,10 @@ class Cookie implements ISet
      */
     public function clear(string $key = null)
     {
-        // TODO: Implement clear() method.
+        if (isset(self::$cookie[$key])) {
+            self::$cookie[$key] = null;
+        };
+        return $this;
     }
 
     /**
@@ -72,6 +87,9 @@ class Cookie implements ISet
      */
     public function destroy(string $key = null)
     {
-        // TODO: Implement destroy() method.
+        if (isset(self::$cookie[$key])) {
+            unset(self::$cookie[$key]);
+        };
+        return $this;
     }
 }

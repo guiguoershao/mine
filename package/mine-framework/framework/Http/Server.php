@@ -16,14 +16,14 @@ class Server implements ISet
 
     protected static $server;
 
-    public function __construct()
+    public function __construct(array $server = [])
     {
-        $this->_init();
+        $this->_init($server);
     }
 
-    private function _init()
+    private function _init(array $server = [])
     {
-        self::$server = $_SERVER;
+        self::$server = empty($server) ? $_SERVER : $server;
     }
 
     /**
@@ -111,11 +111,11 @@ class Server implements ISet
     /**
      * 判断键是否存在
      * @param string $key
-     * @return mixed
+     * @return bool
      */
     public function isExists(string $key)
     {
-        // TODO: Implement isExists() method.
+        return isset(self::$server[$key]) ? true : false;
     }
 
     /**
@@ -125,7 +125,7 @@ class Server implements ISet
      */
     public function get(string $key)
     {
-        return isset($_SERVER[$key]) ? $_SERVER[$key] : null;
+        return isset(self::$server[$key]) ? self::$server[$key] : null;
     }
 
     /**
@@ -144,9 +144,16 @@ class Server implements ISet
      * @param bool $isOverwrite 存在时候是否覆盖
      * @return mixed
      */
-    public function set(string $key, $val, bool $isOverwrite)
+    public function set(string $key, $val, bool $isOverwrite = true)
     {
-        // TODO: Implement set() method.
+        if (isset(self::$server[$key])) {
+            if ($isOverwrite) {
+                self::$server[$key] = $val;
+            }
+        } else {
+            self::$server[$key] = $val;
+        }
+        return $this;
     }
 
     /**
@@ -156,7 +163,10 @@ class Server implements ISet
      */
     public function clear(string $key = null)
     {
-        // TODO: Implement clear() method.
+        if (isset(self::$server[$key])) {
+            self::$server[$key] = null;
+        };
+        return $this;
     }
 
     /**
@@ -166,6 +176,9 @@ class Server implements ISet
      */
     public function destroy(string $key = null)
     {
-        // TODO: Implement destroy() method.
+        if (isset(self::$server[$key])) {
+            unset(self::$server[$key]);
+        };
+        return $this;
     }
 }

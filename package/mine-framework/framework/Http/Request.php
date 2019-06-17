@@ -18,13 +18,13 @@ class Request
     private $server;
     private static $instance;
 
-    final public function __construct()
+    final public function __construct(array $server = [], array $cookie = [], array $header = [], array $input = [])
     {
         if (!self::$instance) {
-            $this->header = new Header();
-            $this->cookie = new Cookie();
-            $this->input = new Input();
-            $this->server = new Server();
+            $this->server = new Server($server);
+            $this->cookie = new Cookie($cookie);
+            $this->header = new Header($header);
+            $this->input = new Input($input);
             self::$instance = $this;
         }
     }

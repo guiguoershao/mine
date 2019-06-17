@@ -13,17 +13,22 @@ use guiguoershao\Http\Interfaces\ISet;
 
 class Input implements ISet
 {
-    protected $input = [];
+    protected static $input = [];
     protected static $instance;
     protected static $offsetRaw;
 
     /**
      * Input constructor.
+     * @param array $input
      */
-    public function __construct()
+    public function __construct(array $input = [])
     {
         if (!self::$instance) {
-            $this->input = array_merge($_POST, $_GET);
+            if (empty($input)) {
+                self::$input = array_merge($_POST, $_GET);
+            } else {
+                self::$input = $input;
+            }
             self::$instance = $this;
         }
     }
@@ -42,7 +47,7 @@ class Input implements ISet
                     break;
             }
             if (is_array($raw)) {
-                $this->input = array_merge($this->input, $raw);
+                $this->input = array_merge(self::$input, $raw);
             }
         }
         return $this;
@@ -51,11 +56,11 @@ class Input implements ISet
     /**
      * 判断键是否存在
      * @param string $key
-     * @return mixed
+     * @return bool
      */
     public function isExists(string $key)
     {
-        // TODO: Implement isExists() method.
+        return isset(self::$input[$key]) ? true : false;
     }
 
     /**
@@ -65,7 +70,7 @@ class Input implements ISet
      */
     public function get(string $key)
     {
-        // TODO: Implement get() method.
+        return isset(self::$input[$key]) ? self::$input[$key] : null;
     }
 
     /**
@@ -74,7 +79,7 @@ class Input implements ISet
      */
     public function getAll()
     {
-        // TODO: Implement getAll() method.
+        return self::$input;
     }
 
     /**
@@ -84,9 +89,16 @@ class Input implements ISet
      * @param bool $isOverwrite 存在时候是否覆盖
      * @return mixed
      */
-    public function set(string $key, $val, bool $isOverwrite)
+    public function set(string $key, $val, bool $isOverwrite = true)
     {
-        // TODO: Implement set() method.
+        if (isset(self::$input[$key])) {
+            if ($isOverwrite) {
+                self::$input[$key] = $val;
+            }
+        } else {
+            self::$input[$key] = $val;
+        }
+        return $this;
     }
 
     /**
@@ -96,7 +108,10 @@ class Input implements ISet
      */
     public function clear(string $key = null)
     {
-        // TODO: Implement clear() method.
+        if (isset(self::$input[$key])) {
+            self::$input[$key] = null;
+        };
+        return $this;
     }
 
     /**
@@ -106,6 +121,9 @@ class Input implements ISet
      */
     public function destroy(string $key = null)
     {
-        // TODO: Implement destroy() method.
+        if (isset(self::$input[$key])) {
+            unset(self::$input[$key]);
+        };
+        return $this;
     }
 }
