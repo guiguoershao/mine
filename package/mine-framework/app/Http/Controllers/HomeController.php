@@ -16,8 +16,8 @@ class HomeController
         $data = 'Hello World';
         $method = 'des-ede3-cbc'; // 3des
         $method = 'des-cbc';
-        $iv_length = openssl_cipher_iv_length( $method );
-        $iv        = openssl_random_pseudo_bytes( $iv_length );
+        $iv_length = openssl_cipher_iv_length($method);
+        $iv = openssl_random_pseudo_bytes($iv_length);
         $des = new Library\Mcrypt\Des($key, $iv);
         dump($enString = $des->setMethod($method)->encrypt($data));
         dump($des->decrypt($enString));
@@ -31,25 +31,25 @@ class HomeController
         dump('------------------RSA加密--------------------------------------');
 
         $privateKey = '-----BEGIN RSA PRIVATE KEY-----
-MIICXAIBAAKBgQCImMIVhEYE9ureo3nusmW3fHknQOKSM7GghXoQdLbfkmOoKgmx
-VyCLL3kD91LdVkL8Jhpf8507FN0Ljf8Pt/2CDrL2tqT29PJvcYtYsyvPifsmyd1v
-6gTkyRNkXjfh44EBh8PJa0TVRJb1NV4cQ4xm7Ypp1KV9hHoniLqrggBSywIDAQAB
-AoGAMx+9UFFL5ZLGsCJOQhTZ9hUrwRHLWv3nBtW+LEeKpF3FV8y4CPw7jWxsphvc
-k0O0WWwnZe8nU1QJMUhphKgPxJqRdAcUe1Sva3nlNSOzfqvcMvYBwNzOWCDHE4Ci
-+vbR14ipJNwqidB3UPyZMfMNqhaVMFmr7ugjYQP1zPX4ciECQQCNLfDD34WO8tko
-rLlYxwDM2RZK1bvKeaSidFAnX2GlPoSqFpF5lr+djfid3wKa8B7kO1M1fgkh/91d
-pF0a7hTrAkEA97Csn9G1Ca/pGQEdqSITZNK3C43+6w9ltjbqmFogHI+qHA5GlBgM
-zU+TpSFce62+937ecQ/khG+p1YR1HYDBoQJAJjaYI7x9vyqWgv71kEUVP11HPmxJ
-z01Ltbk79NxJZtvcNtmy+LFIHlJOSBUT9HIoOmigZis+N5i1B2K03NQyjwJBANKw
-mzZbSNbTpsEZPOS40qxpvUB76cKDV26W6hjsWPJSlk3FKu4gQwuFzD6j0Sp3UcDv
-T0H3Vdf9sAaq5IBTHOECQHGWv5tVpp/bwFb+z6IinBuaMxRDBjpHOznqbueLyDaP
-Vx+GZ0QqD0JbgDMGJu01L2zA6jSZXh4O1D+ECwCtKIE=
+MIICXQIBAAKBgQC9Czd0pMrl2iYDTWhIPQLcM4uh6NwFgpjulH4N9pK34k3q8cTa
+HwCokxoStG/GE1RjF7UhIpy/rjud3BRkhO36BNYV8abqUERN/SmXHdZfJwnzAPVw
+Pt6ijSQZAwXev7FVUNSgmNxBEok/OhdJRxAGXBhIBsN0a03Jn0yt2bZliwIDAQAB
+AoGAd60vKU/eBw9Ie1S4zOqa8e5L2m9BQte/m2I0PwC3N2Qz8aWm+nMgBphBrE/A
+ZwP7q1Pp3hU8aHiT00btPgmNYWAvikiZrLyzpVl0ZcFmyZ8FOyKimbgWAr3Hvfmb
+Q77TpAXvp1nub/d6iO6JcZtLjIfEfGsQ7UjhGSDBxHmMSskCQQDqYRWjZrsWDG8E
+YJZMeiZPxAGCF+XoGlaAdQzawdVNCntV8DDWGmBNMZAn9tePOuE9tnyIDI5+3xGe
+Z+tlXuzXAkEAznuGx9GElDjh8f5DloXiQqM05QqLYKKA2znLao7f2m2GKLPkmSCn
+lCsQVtGH/plTLZd7S8nrRkBXuQ2mGAEibQJBAIz4W8VuMrSuQc/GMGBLT+PGJooS
+yatyu/iDbnnc/+hYl5o234jHUIjdeLEw3LI/Xd56dih2NPbGQJigNItCLv0CQQC5
+uEuzgNVyCHPaGOwsAIJRk8Co3sIcii3CgYpgbuAT9H0+MQhFXyS71bwditt6eehh
+0qWYtqaDCq6ciRVC9ApFAkB/BSXLRjNDpXj07oreXbB4O1tesDOgBZELYzI3Cq8b
+GcnpF6GjUsGkIwQvtI1VVBn9l9JMVeB+BESXChWL7zkk
 -----END RSA PRIVATE KEY-----';
         $publicKey = '-----BEGIN PUBLIC KEY-----
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCImMIVhEYE9ureo3nusmW3fHkn
-QOKSM7GghXoQdLbfkmOoKgmxVyCLL3kD91LdVkL8Jhpf8507FN0Ljf8Pt/2CDrL2
-tqT29PJvcYtYsyvPifsmyd1v6gTkyRNkXjfh44EBh8PJa0TVRJb1NV4cQ4xm7Ypp
-1KV9hHoniLqrggBSywIDAQAB
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC9Czd0pMrl2iYDTWhIPQLcM4uh
+6NwFgpjulH4N9pK34k3q8cTaHwCokxoStG/GE1RjF7UhIpy/rjud3BRkhO36BNYV
+8abqUERN/SmXHdZfJwnzAPVwPt6ijSQZAwXev7FVUNSgmNxBEok/OhdJRxAGXBhI
+BsN0a03Jn0yt2bZliwIDAQAB
 -----END PUBLIC KEY-----';
         $rsa = new Library\Mcrypt\Rsa($publicKey, $privateKey);
         dump($data);

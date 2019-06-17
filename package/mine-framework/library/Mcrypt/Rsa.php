@@ -57,18 +57,17 @@ class Rsa extends BaseMcrypt
      */
     private function privateKeyEncode($input, $type)
     {
-        $encodeKey = $this->_getKey($type);
+        $keyResource = $this->_getKey($type);
 
         $data = $this->_splitEncode($input); // 把要加密地信息 base64_encode 后等长放入数组
-
         $encrypted = '';
         $encryptedData = [];
         // //理论上是可以只加密数组中的第一个元素 其他的不加密 因为只要一个解密不出来 整体也就解密不出来 这里先全部加密
         foreach ($data as $key => $value) {
             if ($type === self::PRIVATE_KEY_ENCODE) {
-                openssl_private_encrypt($value, $encrypted, $encodeKey);
+                openssl_private_encrypt($value, $encrypted, $keyResource);
             } else {
-                openssl_public_encrypt($value, $encrypted, $encodeKey);
+                openssl_public_encrypt($value, $encrypted, $keyResource);
             }
             $encryptedData[$key] = $encrypted;
         }
@@ -87,12 +86,12 @@ class Rsa extends BaseMcrypt
         $decodeKey = $this->_getKey($type);
         $data = $this->_toArray($input);
         $decrypted = '';
-        $string = '';
+        $string = "";
         foreach ($data as $key => $value) {
             if ($type === self::PUBLIC_KEY_DECODE) {
-                openssl_public_decrypt($value, $encrypted, $decodeKey);
+                openssl_public_decrypt($value, $decrypted, $decodeKey);
             } else {
-                openssl_private_decrypt($value, $encrypted, $decodeKey);
+                openssl_private_decrypt($value, $decrypted, $decodeKey);
             }
             $string .= $decrypted;
         }
@@ -100,27 +99,29 @@ class Rsa extends BaseMcrypt
     }
 
     /**
-     * 检查是否 含有所需配置文件
      * @param $type
-     * @return int
+     * @return bool|resource
      * @throws McryptException
      */
     private function _getKey($type)
     {
-        dump($type);
         switch ($type) {
             case 1:
                 if (empty($this->privateKey)) {
                     throw new McryptException("请配置私钥");
                 }
-                return openssl_pkey_get_private($this->privateKey);
+                $string = openssl_pkey_get_private($this->privateKey);
+                break;
             case 2:
                 if (empty($this->publicKey)) {
                     throw new McryptException("请配置公钥");
                 }
-                return openssl_pkey_get_public($this->publicKey);
+                $string = openssl_pkey_get_public($this->publicKey);
+                break;
+            default:
+                throw new McryptException("请先配置公钥和私钥");
         }
-        throw new McryptException("请先配置公钥和私钥");
+        return $string;
     }
 
     /**
