@@ -6,13 +6,14 @@ namespace App\Http\Controllers;
 
 use guiguoershao\Facades\ConfigFacade;
 use Library;
-
+use Config;
 class HomeController
 {
 
     public function index()
     {
-        dd(\Config::get('app.url'));
+
+        dd(Config::get('redis'));
         dump('------------------DES加密--------------------------------------');
         $key = '123456';
         $data = 'Hello World';
@@ -62,5 +63,11 @@ BsN0a03Jn0yt2bZliwIDAQAB
         dump($data);
         dump($enString = $rsa->encrypt($data, Library\Mcrypt\Rsa::PUBLIC_KEY_ENCODE));
         dump($rsa->decrypt($enString, Library\Mcrypt\Rsa::PRIVATE_KEY_DECODE));
+    }
+
+    public function redis()
+    {
+        \MyRedis::set('a', 1);
+        dd(\MyRedis::get('a'));
     }
 }

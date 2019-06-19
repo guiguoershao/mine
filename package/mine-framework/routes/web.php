@@ -8,6 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('home', 'HomeController@index');
+Route::get('redis', 'HomeController@redis');
 
 Route::get('/coroutines', function () {
     dump(time());

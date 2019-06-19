@@ -20,7 +20,20 @@ class RedisProvider extends ServiceProvider
      */
     public function register()
     {
-        // TODO: Implement register() method.
+        if (\Config::get('redis.client') == 'predis') {
+            app()->register('MyRedis', function () {
+                $redis = new \Predis\Client([
+                    'scheme' => 'tcp',
+                    'host'   => \Config::get('redis.default.host'),
+                    'port'   => \Config::get('redis.default.port'),
+                ]);
+                if (\Config::get('redis.default.password')) {
+                    $redis->auth(\Config::get('redis.default.password'));
+                }
+                $redis->select(\Config::get('redis.default.database'));
+                return $redis;
+            });
+        }
     }
 
     /**

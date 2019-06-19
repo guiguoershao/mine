@@ -30,8 +30,8 @@ class Bootstrap implements IBootstrap
             \guiguoershao\Sys\Providers\AppProvider::class,
             \guiguoershao\Sys\Providers\RouteProvider::class,
             \guiguoershao\Sys\Providers\ConfigProvider::class,
-        ])->resolverProviders(ConfigFacade::get('app.providers'))
-            ->aliasClass(ConfigFacade::get('app.aliases'));
+        ])->aliasClass(ConfigFacade::get('app.aliases'))
+            ->resolverProviders(ConfigFacade::get('app.providers'));
         return $container;
     }
 }
