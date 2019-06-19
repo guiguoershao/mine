@@ -85,7 +85,6 @@ class Container
     }
 
 
-
     /**
      * 解析注册服务提供者
      * @param $providers
@@ -108,9 +107,22 @@ class Container
     }
 
     /**
+     * 注册门面别名
+     * @param array $aliasList
+     * @return $this
+     */
+    final public function aliasClass(array $aliasList)
+    {
+        foreach ($aliasList as $alias => $fullName) {
+            class_alias($fullName, $alias);
+        }
+        return $this;
+    }
+
+    /**
      * @return Http
      */
-    public function http() : Http
+    public function http(): Http
     {
         return $this->make(Http::class);
     }
@@ -119,7 +131,7 @@ class Container
      * 路由
      * @return Route
      */
-    public function route() : Route
+    public function route(): Route
     {
         return $this->make(Route::class);
     }

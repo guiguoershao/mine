@@ -12,7 +12,7 @@ class HomeController
 
     public function index()
     {
-        dd(ConfigFacade::get('app.url'));
+        dd(\Config::get('app.url'));
         dump('------------------DES加密--------------------------------------');
         $key = '123456';
         $data = 'Hello World';

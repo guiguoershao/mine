@@ -7,7 +7,7 @@
  */
 
 namespace guiguoershao\Facades;
-
+use guiguoershao\Sys\Configs\Config;
 
 class ConfigFacade extends Facade
 {
@@ -17,6 +17,6 @@ class ConfigFacade extends Facade
      */
     static public function getFacadeAccessor(): string
     {
-        return 'Config';
+        return Config::class;
     }
 }

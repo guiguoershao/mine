@@ -10,6 +10,7 @@ namespace App;
 
 
 use guiguoershao\Container\Container;
+use guiguoershao\Facades\ConfigFacade;
 use guiguoershao\Http\Http;
 use guiguoershao\Protocol\IBootstrap;
 
@@ -29,7 +30,8 @@ class Bootstrap implements IBootstrap
             \guiguoershao\Sys\Providers\AppProvider::class,
             \guiguoershao\Sys\Providers\RouteProvider::class,
             \guiguoershao\Sys\Providers\ConfigProvider::class,
-        ]);
+        ])->resolverProviders(ConfigFacade::get('app.providers'))
+            ->aliasClass(ConfigFacade::get('app.aliases'));
         return $container;
     }
 }

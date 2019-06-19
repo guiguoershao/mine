@@ -21,7 +21,7 @@ class ConfigProvider extends ServiceProvider
      */
     public function register()
     {
-        app()->register('Config', function () {
+        app()->register(Config::class, function () {
             return Config::getInstance();
         });
     }
@@ -32,6 +32,6 @@ class ConfigProvider extends ServiceProvider
      */
     public function boot()
     {
-        Config::getInstance()->load(__CONFIG__);
+        app()->make(Config::class)->load(__CONFIG__);
     }
 }
