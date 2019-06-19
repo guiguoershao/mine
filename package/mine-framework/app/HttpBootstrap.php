@@ -10,6 +10,8 @@ namespace App;
 use guiguoershao\Container\Container;
 use guiguoershao\Http\Http;
 use guiguoershao\Protocol\IBootstrap;
+use guiguoershao\Sys\Configs\Config;
+
 class HttpBootstrap implements IBootstrap
 {
     private $request;
@@ -45,9 +47,10 @@ class HttpBootstrap implements IBootstrap
 //            var_dump($server, $cookie, $header, array_merge($post, $get));
             return new Http($server, $cookie, $header, array_merge($post, $get));
         })->resolverProviders([
-            'app' => \App\Providers\AppProvider::class,
-            'route' => \App\Providers\RouteProvider::class,
-        ]);
+            'app' => \guiguoershao\Sys\Providers\AppProvider::class,
+            'route' => \guiguoershao\Sys\Providers\RouteProvider::class,
+            'config' => \guiguoershao\Sys\Providers\ConfigProvider::class,
+        ])->resolverProviders(Config::getInstance()->get('app.providers', []));;
 
         return $container;
     }

@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: fengyan
- * Date: 19-5-21
- * Time: 上午10:19
+ * Date: 19-6-19
+ * Time: 上午9:41
  */
 
 namespace App\Providers;
@@ -11,7 +11,7 @@ namespace App\Providers;
 
 use guiguoershao\Sys\ServiceProvider;
 
-class AppProvider extends ServiceProvider
+class RedisProvider extends ServiceProvider
 {
 
     /**
@@ -20,7 +20,7 @@ class AppProvider extends ServiceProvider
      */
     public function register()
     {
-        $app = app();
+        // TODO: Implement register() method.
     }
 
     /**
@@ -29,5 +29,6 @@ class AppProvider extends ServiceProvider
      */
     public function boot()
     {
+        // TODO: Implement boot() method.
     }
 }

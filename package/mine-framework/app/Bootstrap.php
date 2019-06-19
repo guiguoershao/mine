@@ -12,7 +12,7 @@ namespace App;
 use guiguoershao\Container\Container;
 use guiguoershao\Http\Http;
 use guiguoershao\Protocol\IBootstrap;
-use guiguoershao\Route\Route;
+use guiguoershao\Sys\Configs\Config;
 
 class Bootstrap implements IBootstrap
 {
@@ -27,9 +27,10 @@ class Bootstrap implements IBootstrap
         $container->register(Http::class, function () {
             return new Http();
         })->resolverProviders([
-            'app' => \App\Providers\AppProvider::class,
-            'route' => \App\Providers\RouteProvider::class,
-        ]);
+            'app' => \guiguoershao\Sys\Providers\AppProvider::class,
+            'route' => \guiguoershao\Sys\Providers\RouteProvider::class,
+            'config' => \guiguoershao\Sys\Providers\ConfigProvider::class,
+        ])->resolverProviders(Config::getInstance()->get('app.providers', []));
 
         return $container;
     }

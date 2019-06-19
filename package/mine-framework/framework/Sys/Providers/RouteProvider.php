@@ -6,7 +6,7 @@
  * Time: 上午10:57
  */
 
-namespace App\Providers;
+namespace guiguoershao\Sys\Providers;
 
 
 use guiguoershao\Route\Route;
@@ -37,8 +37,8 @@ class RouteProvider extends ServiceProvider
             }
             /*$rootNamespace = "App\\Http\\Controllers\\";
             Route::setRootNamespace($rootNamespace);
-            scan_require_file(__ROOT__ . '/routes', '', true, ['cli']);
-            return new Route();*/
+            scan_require_file(__ROOT__ . '/routes', '', true, ['cli']);*/
+            return new Route();
         });
     }
 
