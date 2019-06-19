@@ -21,7 +21,7 @@ class ConfigProvider extends ServiceProvider
      */
     public function register()
     {
-        app()->register('config', function () {
+        app()->register('Config', function () {
             return Config::getInstance();
         });
     }

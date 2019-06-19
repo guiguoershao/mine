@@ -84,22 +84,7 @@ class Container
         return $default;
     }
 
-    /**
-     * 路由
-     * @return Route
-     */
-    public function route() : Route
-    {
-        return $this->make(Route::class);
-    }
 
-    /**
-     * @return Http
-     */
-    public function http() : Http
-    {
-        return $this->make(Http::class);
-    }
 
     /**
      * 解析注册服务提供者
@@ -122,13 +107,21 @@ class Container
         return $this;
     }
 
-    public function redis()
+    /**
+     * @return Http
+     */
+    public function http() : Http
     {
-        if (!($this->make('redis') instanceof \Redis)) {
+        return $this->make(Http::class);
+    }
 
-        }
-
-        return $this->make('redis');
+    /**
+     * 路由
+     * @return Route
+     */
+    public function route() : Route
+    {
+        return $this->make(Route::class);
     }
 
     /**

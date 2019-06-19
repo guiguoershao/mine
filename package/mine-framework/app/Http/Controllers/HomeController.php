@@ -4,7 +4,7 @@
 namespace App\Http\Controllers;
 
 
-use guiguoershao\Sys\Configs\Config;
+use guiguoershao\Facades\ConfigFacade;
 use Library;
 
 class HomeController
@@ -12,7 +12,7 @@ class HomeController
 
     public function index()
     {
-        dd(Config::getInstance()->get('app.url'));
+        dd(ConfigFacade::get('app.url'));
         dump('------------------DES加密--------------------------------------');
         $key = '123456';
         $data = 'Hello World';

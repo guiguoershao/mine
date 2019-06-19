@@ -8,7 +8,8 @@
     "jaeger/querylist": "^4.0",
     "paquettg/php-html-parser": "^1.7",
     "catfan/Medoo": "^1.5",
-    "zhuzhichao/ip-location-zh": "^2.4"
+    "zhuzhichao/ip-location-zh": "^2.4",
+    "predis/predis": "^1.1"
   },
   "autoload": {
     "files": [
