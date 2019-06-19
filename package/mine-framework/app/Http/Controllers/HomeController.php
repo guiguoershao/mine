@@ -67,7 +67,8 @@ BsN0a03Jn0yt2bZliwIDAQAB
 
     public function redis()
     {
-        \MyRedis::set('a', 1);
-        dd(\MyRedis::get('a'));
+        \MyRedis::set('a', 2);
+        dump(\MyRedis::get('a'));
+        dump(\MyRedis::del('a'));
     }
 }
