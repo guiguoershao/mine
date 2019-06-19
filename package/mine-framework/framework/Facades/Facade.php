@@ -43,6 +43,14 @@ abstract class Facade
     }
 
     /**
+     * @return mixed|null
+     */
+    public static function getInstance()
+    {
+        return static::getFacadeRoot();
+    }
+
+    /**
      * @return mixed
      */
     abstract static public function getFacadeAccessor() : string ;
