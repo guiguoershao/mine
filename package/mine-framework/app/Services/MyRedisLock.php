@@ -108,6 +108,12 @@ class MyRedisLock
      */
     protected function generateUniqueLockId()
     {
-        return date('YmdHis') . ':' . $this->getRedis()->incr(self::LOCK_UNIQUE_ID_KEY);
+        if (!$this->getRedis()->exists(self::LOCK_UNIQUE_ID_KEY)) {
+            $id = $this->getRedis()->incr(self::LOCK_UNIQUE_ID_KEY);
+            $this->getRedis()->expire(self::LOCK_UNIQUE_ID_KEY, strtotime(date('Y-m-d')) + 86400);
+        } else {
+            $id = $this->getRedis()->incr(self::LOCK_UNIQUE_ID_KEY);
+        }
+        return date('YmdHis') . ':' . $id;
     }
 }
