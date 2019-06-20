@@ -83,8 +83,6 @@ class MyRedisLock
         //  监听Redis key防止在【比对lock id】与【解锁事务执行过程中】被修改或删除，提交事务后会自动取消监控，其他情况需手动解除监控
         $this->getRedis()->watch($strKey);
         if ($uniqueLockId == $this->getRedis()->get($strKey)) {
-            dump($this->getRedis()->get($strKey));
-            dump($uniqueLockId);
             $this->getRedis()->multi();
             $this->getRedis()->del([$strKey]);
             $this->getRedis()->exec();
