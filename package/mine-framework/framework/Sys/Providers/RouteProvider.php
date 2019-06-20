@@ -23,7 +23,7 @@ class RouteProvider extends ServiceProvider
     {
         app()->register(Route::class, function () {
             if (PHP_SAPI == 'cli') {
-                $rootNamespace = "App\\Cli\\";
+                $rootNamespace = "App\\Console\\";
                 Route::setRootNamespace($rootNamespace);
                 $param = $_SERVER['argv'];
                 if (count($param) == 3) {
