@@ -10,6 +10,7 @@ namespace App\Consoles;
 
 
 use App\Facades\RedisFacade;
+use App\Services\Jobs\TestJob;
 use App\Services\Queues\MyMsgQueue;
 use App\Services\Queues\QueueDaemon;
 
@@ -19,9 +20,9 @@ class Test
     {
         $queue = new MyMsgQueue(RedisFacade::getFacadeRoot());
 
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 1000; $i++) {
             dump($i);
-            $queue->publish("test:list", serialize(['i'=>$i, 'data'=>'Hello World!']));
+            $queue->publish("test:list", serialize(new TestJob(['i'=>$i, 'data'=>'Hello World!'])));
         }
         $daemon = new QueueDaemon();
         $daemon->run();

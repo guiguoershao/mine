@@ -10,6 +10,7 @@ namespace App\Services\Queues;
 
 
 use App\Facades\RedisFacade;
+use App\Services\Jobs\MyJob;
 
 class QueueDaemon
 {
@@ -17,7 +18,7 @@ class QueueDaemon
      * 总进程数
      * @var int
      */
-    public $processNum = 8;
+    public $processNum = 2;
 
     /**
      * 启动进程
@@ -53,8 +54,13 @@ class QueueDaemon
             usleep(10000); // 10ms 执行一次
             //  队列业务代码
             $queue = new MyMsgQueue(RedisFacade::getFacadeRoot());
-            $queue->subscribe("test:list", $data);
-            dump($data);
+            $re = $queue->subscribe("test:list", $data);
+            if ($re && $data) {
+                $obj = unserialize($data);
+                if ($obj instanceof MyJob) {
+                    $obj->handle();
+                }
+            }
         }
     }
 }
