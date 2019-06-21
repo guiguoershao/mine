@@ -19,22 +19,24 @@ class MyRedisLock
 
     const LOCK_DEFAULT_EXPIRE_TIME = 100; // 默认锁的失效时间 单位秒
 
-    public function __construct()
-    {
+    protected static $redis;
 
+    public function __construct(\Predis\Client $redis)
+    {
+        self::$redis = $redis;
     }
 
-    public static function getInstance()
+    public static function getInstance(\Predis\Client $redis)
     {
         if (self::$instance == null) {
-            self::$instance = new self();
+            self::$instance = new self($redis);
         }
         return self::$instance;
     }
 
-    private function getRedis(): \Predis\Client
+    private function getRedis():\Predis\Client
     {
-        return \MyRedis::getFacadeRoot();
+        return self::$redis;
     }
 
     /**
