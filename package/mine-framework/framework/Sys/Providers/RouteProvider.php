@@ -23,13 +23,17 @@ class RouteProvider extends ServiceProvider
     {
         app()->register(Route::class, function () {
             if (PHP_SAPI == 'cli') {
-                $rootNamespace = "App\\Console\\";
+                $rootNamespace = "App\\Consoles\\";
                 Route::setRootNamespace($rootNamespace);
                 $param = $_SERVER['argv'];
-                if (count($param) == 3) {
-                    $_SERVER['REQUEST_URI'] = '/' . trim($param[2], '/');
-                }
-                scan_require_file(__ROOT__ . '/routes', '', false, ['cli']);
+                $param[1] = isset($param[1]) ? $param[1] : '/';
+                $param[2] = isset($param[2]) ? $param[2] : '/';
+
+                app()->http()->server()->set('REQUEST_URI', '/' . trim($param[2], '/'));
+                app()->http()->server()->set('REQUEST_METHOD', trim($param[1]));
+//                    $_SERVER['REQUEST_URI'] = '/' . trim($param[2], '/');
+
+                scan_require_file(__ROOT__ . '/routes', '', false, ['console']);
             } else {
                 $rootNamespace = "App\\Http\\Controllers\\";
                 Route::setRootNamespace($rootNamespace);

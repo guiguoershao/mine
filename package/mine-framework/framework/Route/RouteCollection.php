@@ -99,8 +99,9 @@ class RouteCollection
     public function dispatch(Http $http)
     {
         $requestMethod = strtoupper($http->server()->getMethod());
+        $uri = $http->server()->getUri();
 
-        list($code, $route) = self::_dispatch($requestMethod, $http->server()->getUri());
+        list($code, $route) = self::_dispatch($requestMethod, $uri);
         switch ($code) {
             case 404:
                 $http->noFound();
@@ -156,7 +157,6 @@ class RouteCollection
     private static function _dispatch($requestMethod, $uri)
     {
         list($uri) = explode('?', $uri);
-
         if (empty(self::$routesArr) && !isset(self::$routesArr[$requestMethod])) {
             return [405, null];
         }
