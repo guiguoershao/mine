@@ -14,3 +14,5 @@ Route::any('/', function () {
 });
 
 Route::any('/home', 'Test@index');
+Route::any('/publish', 'Test@publish');
+Route::any('/subscribe', 'Test@subscribe');

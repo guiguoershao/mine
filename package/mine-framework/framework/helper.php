@@ -52,3 +52,13 @@ function scan_require_file($configDir, $closure = "", $flag = true, $ignore = []
 
 }
 
+/**
+ * 获取配置
+ * @param null $key
+ * @param null $default
+ * @return mixed
+ */
+function config($key = null, $default = null)
+{
+    return \Config::get($key, $default);
+}
