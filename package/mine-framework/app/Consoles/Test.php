@@ -12,6 +12,7 @@ namespace App\Consoles;
 use App\Facades\RedisFacade;
 use App\Services\Jobs\TestJob;
 use App\Services\Queues\MyMsgQueue;
+use App\Services\Queues\MyRedisQueue;
 use App\Services\Queues\QueueDaemon;
 use Predis\Client;
 
@@ -23,16 +24,16 @@ class Test
 
         for ($i = 1; $i <= 1000; $i++) {
             dump($i);
-            $queue->publish("test:list", serialize(new TestJob(['i'=>$i, 'data'=>'Hello World!'])));
+            $queue->publish("test:list", serialize(new TestJob(['i' => $i, 'data' => 'Hello World!'])));
         }
         $daemon = new QueueDaemon();
         $daemon->run();
     }
 
-    private function redis() : \Redis
+    private function redis(): \Redis
     {
         $redis = new \Redis();
-        $redis->connect(config('redis.default.host'), config('redis.default.port'));
+        $redis->pconnect(config('redis.default.host'), config('redis.default.port'));
         $redis->select(config('redis.default.database'));
         return $redis;
     }
@@ -42,9 +43,12 @@ class Test
      */
     public function publish()
     {
+        $queue = new MyRedisQueue($this->redis());
         for ($i = 1; $i <= 10000; $i++) {
             usleep(1000);
-            $this->redis()->publish('test', "这是消息--{$i}");
+            $queue->publish('test-1', "消息--1--{$i}");
+            $queue->publish('test-2', "消息--2--{$i}");
+//            $this->redis()->publish('test', "这是消息--{$i}");
         }
     }
 
@@ -53,13 +57,24 @@ class Test
      */
     public function subscribe()
     {
-        $this->redis()->subscribe(['test'], function ($redis, $chan, $msg) {
+        ini_set('default_socket_timeout', -1);
+        $queue = new MyRedisQueue($this->redis());
+        $queue->setChannelCallback([
+            'test-1' => function ($msg) {
+                dump("这里是输出信息--1----------" . $msg);
+            },
+            'test-2' => function ($msg) {
+                dump("这里是输出信息--2----------" . $msg);
+            }
+        ]);
+        $queue->subscribe(['test-1', 'test-2']);
+        /*$this->redis()->subscribe(['test'], function ($redis, $chan, $msg) {
             switch ($chan) {
                 case 'test':
                     dump($msg);
                     break;
             }
-        });
+        });*/
 
     }
 }
