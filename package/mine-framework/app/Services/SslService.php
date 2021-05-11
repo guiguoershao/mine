@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * https://juejin.cn/post/6954296442269728775
+ * 参考https加解密思路 实现自己网络请求数据传输的安全性，一致性，防篡改。（对称加密+非对称加密）
+ */
 
 namespace App\Services;
 
