@@ -17,7 +17,7 @@ abstract class BaseMcrypt
      * 偏移量
      * @var
      */
-    protected $hexIv = '1234567890asdfgh';
+    protected $hexIv;
 
     public function __construct($key = '', $hexIv = '')
     {
@@ -33,6 +33,7 @@ abstract class BaseMcrypt
      */
     protected function isHasMethod($method)
     {
+        $method = strtolower($method);
         if (!in_array($method, openssl_get_cipher_methods())) {
             throw new McryptException("该{$method}加密方法不存在");
         }

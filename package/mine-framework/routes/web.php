@@ -9,6 +9,7 @@ Route::get('/', function () {
 
 Route::get('home', 'HomeController@index');
 Route::get('redis', 'HomeController@redis');
+Route::get('ssl/test', 'SslController@test');
 
 Route::get('/coroutines', function () {
     dump(time());
