@@ -80,4 +80,28 @@ BsN0a03Jn0yt2bZliwIDAQAB
         dump(MyRedisLock::getInstance()->releaseLock($key, $re2));
         dump($re2);
     }
+
+    public function test()
+    {
+        $stack = new \SplStack();
+        $stack->push("w1");
+        $stack->push("w2");
+        $stack->push("w3");
+        $stack->push("w4");
+        $stack->push("w5");
+        $stack->push("w6");
+
+        $top = $stack->top();
+        dump($top);
+        $bottom = $stack->bottom();
+        dump($bottom);
+
+        dump($stack->pop());
+        dump($stack->pop());
+        dump($stack->pop());
+        dump($stack->pop());
+        dump($stack->pop());
+        dump($stack->pop());
+    }
+
 }
