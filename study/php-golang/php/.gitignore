@@ -1,3 +1,5 @@
 /.idea
 /study/python/.idea
 /study/package/.idea
+composer.lock
+/vendor
