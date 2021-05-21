@@ -1,0 +1,19 @@
+{
+    "name": "administrator/php",
+    "authors": [
+        {
+            "name": "FengYan",
+            "email": "guiguoershao@163.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "eaglewu/swoole-ide-helper": "dev-master"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://mirrors.aliyun.com/composer/"
+        }
+    }
+}
