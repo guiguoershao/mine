@@ -26,13 +26,13 @@
             "Tests\\": "tests/"
         }
     },
+    "require-dev": {
+        "eaglewu/swoole-ide-helper": "dev-master"
+    },
     "repositories": {
         "packagist": {
             "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
+            "url": "https://mirrors.aliyun.com/composer/"
         }
-    },
-    "require-dev": {
-        "eaglewu/swoole-ide-helper": "dev-master"
     }
 }

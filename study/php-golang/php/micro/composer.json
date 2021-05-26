@@ -66,5 +66,11 @@
     "unit-tests": "php test/run.php -c phpunit.xml --testsuite unitTests",
     "check-cs": "./bin/php-cs-fixer fix --dry-run --diff --diff-format=udiff",
     "cs-fix": "./bin/php-cs-fixer fix"
+  },
+  "repositories": {
+    "packagist": {
+      "type": "composer",
+      "url": "https://mirrors.aliyun.com/composer/"
+    }
   }
 }
