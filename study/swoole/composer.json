@@ -27,7 +27,8 @@
         }
     },
     "require-dev": {
-        "eaglewu/swoole-ide-helper": "dev-master"
+        "eaglewu/swoole-ide-helper": "dev-master",
+        "swoft/swoole-ide-helper": "dev-master"
     },
     "repositories": {
         "packagist": {
