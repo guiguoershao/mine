@@ -18,8 +18,7 @@
     "psr-4": {
       "guiguoershao\\": "framework",
       "App\\": "app",
-      "Library\\": "library",
-      "": "extend"
+      "Library\\": "library"
     }
   },
   "require-dev": {
