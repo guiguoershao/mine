@@ -47,5 +47,6 @@ func main() {
 	runtime.GOMAXPROCS(2) // 修改为1查看效果
 	go a()
 	go b()
+	fmt.Println("Heool")
 	time.Sleep(time.Second)
 }
