@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test golang template</title>
+</head>
+<body>
+    {{$Name := "tom"}}
+    {{$Name = "kite"}}
+    {{$Name}}<br>
+
+    {{$len := (len "hello,ghz")}}
+
+    {{$len}}
+
+
+
+
+{{$Age := 18}}
+
+{{if (ge $Age 18)}}
+<h3>你已经成年！</h3>
+{{else}}
+<h3>你还未成年！</h3>
+{{end}}
+
+
+{{range $x := .}}
+{{println $x}}
+{{end}}
+</body>
+</html>
