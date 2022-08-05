@@ -19,7 +19,7 @@ func GoRegister(c *gin.Context) {
 
 func main() {
 	e := gin.Default()
-	e.LoadHTMLGlob("tempates/*")
+	e.LoadHTMLGlob("templates/*")
 	e.POST("/register", Regsiter)
 	e.GET("/register", GoRegister)
 	e.Run("0.0.0.0:8001")

@@ -24,7 +24,7 @@ func DoLogin(c *gin.Context) {
 
 func main() {
 	e := gin.Default()
-	e.LoadHTMLGlob("tempates/*")
+	e.LoadHTMLGlob("templates/*")
 
 	e.GET("/login", Login)
 	e.POST("/login", DoLogin)
