@@ -8,9 +8,9 @@
     "guzzlehttp/guzzle": "~6.0",
     "jaeger/querylist": "^4.0",
     "paquettg/php-html-parser": "^1.7",
-    "catfan/Medoo": "^2.1.*",
     "zhuzhichao/ip-location-zh": "^2.4",
-    "predis/predis": "^1.1"
+    "predis/predis": "^1.1",
+    "catfan/medoo": "^1.7"
   },
   "autoload": {
     "files": [
@@ -35,6 +35,11 @@
     "packagist": {
       "type": "composer",
       "url": "https://mirrors.aliyun.com/composer/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "easywechat-composer/easywechat-composer": true
     }
   }
 }
