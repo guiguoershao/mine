@@ -45,7 +45,7 @@ func TestGetAndPost(c *gin.Context) {
 
 func main() {
 	e := gin.Default()
-	e.LoadHTMLGlob("tempates/*")
+	e.LoadHTMLGlob("templates/*")
 	e.GET("/testQueryString", TestQueryString)
 
 	e.GET("/login", Login)
