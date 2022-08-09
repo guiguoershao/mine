@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Golang 技术栈精品课(golang-tech-stack.com)验证码</title>
+</head>
+<body>
+
+
+<h1>Golang 技术栈精品课(golang-tech-stack.com)</h1>
+
+<form action="/captcha/verify/" method="post">
+
+    User: <input type="text"> <br>
+    Pwd: <input type="password"> <br>
+    Captcha：<input type="text" name="code">
+
+    <img src="/captcha" onclick="this.src='/captcha?v='+Math.random()">
+
+    <input type="submit">
+</form>
+</body>
+</html>
