@@ -1,9 +1,10 @@
 package main
 
 import (
+	"gin-mine/configs"
 	"gin-mine/routes"
 	"github.com/gin-gonic/gin"
-	"net/http"
+	"github.com/spf13/viper"
 )
 
 func main() {
@@ -11,12 +12,17 @@ func main() {
 
 	r := routes.Route{ginInstance}
 
-	r.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, gin.H{
-			"code": 0,
-			"msg":  "ok",
-		})
-	})
+	// 加载路由
 	r.Dispatch()
-	r.Run(":8001")
+
+	// 加载配置
+	viper := viper.New()
+	configInstance := configs.NewConfig(viper)
+
+	//	配置并读取至内存中
+	configInstance.SetConf("./configs", "config", "ini").ReadInConfig()
+
+	httpPort := configInstance.GetString("http.port")
+
+	r.Run(":" + httpPort)
 }
