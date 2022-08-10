@@ -1,7 +1,7 @@
 package configs
 
 import (
-	"fmt"
+	"gin-mine/framework/console"
 	"github.com/spf13/viper"
 	"sync"
 )
@@ -12,6 +12,7 @@ type Config struct {
 }
 
 type entity struct {
+	App   app
 	Log   log
 	Mysql mysql
 	Redis redis
@@ -31,24 +32,25 @@ func GetInstance() *Config {
 	return instance
 }
 
-func (c Config) SetConf(path, name, t string) Config {
+func (c *Config) SetConf(path, name, t string) *Config {
 	c.viper.AddConfigPath(path) // 路径
 	c.viper.SetConfigName(name) // 名称
 	c.viper.SetConfigType(t)    // 类型
 	return c
 }
 
-func (c Config) ReadInConfig() {
+func (c *Config) ReadInConfig() {
 	err := c.viper.ReadInConfig()
 
 	if err != nil {
 		_ = viper.SafeWriteConfig()
-		fmt.Printf("读取日志失败, %v\n", err)
+		console.Fatal("读取日志失败, err: %v", err.Error())
 		return
 	}
 
 	entity := entity{}
 	err = c.viper.Unmarshal(&entity)
+	console.Print("entity: %v", entity)
 	//c.viper.UnmarshalKey("mysql", &entity.Mysql)
 	c.Entity = entity
 	//fmt.Printf("entity.mysql：%v\n", c.GetString("mysql.dsn"))

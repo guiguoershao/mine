@@ -1,5 +1,12 @@
 package configs
 
+type app struct {
+	Mode  string
+	Debug bool
+	//Lang  string
+	Addr string
+}
+
 type log struct {
 	Level      string
 	Path       string

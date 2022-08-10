@@ -18,5 +18,4 @@ func main() {
 	bootstrap.LoadRouter().LoadConfig()
 
 	bootstrap.Run()
-
 }
