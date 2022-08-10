@@ -1,0 +1,16 @@
+.env
+vendor
+.idea
+*.exe
+build/bin
+*bin
+*.zip
+*.apk
+*.toml
+!example.toml
+gin-mini
+backup_mysql_linux
+!static/css
+!static/js
+!static/img
+tmp
