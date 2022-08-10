@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8f07f301-6e4f-4c9d-a4bb-942106eefcdf" name="Default Changelist" comment="feat 测试" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" path="D:\Program Files\go1.18.4" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="ProjectId" id="2D622nSJS4GpR1NdoqKh3vaa92J" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../package/gin-mine-framework" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="go.vgo" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\data\app\guiguoershao\mine\study\golang-topic" />
+      <recent name="D:\data\app\guiguoershao\mine\study\golang-topic\testing" />
+      <recent name="D:\data\app\guiguoershao\mine\study\golang-topic\pro1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build topic">
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="golang-topic" />
+      <working_directory value="$PROJECT_DIR$/myworkspace/myproject" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/myworkspace/myproject/main.go" />
+      <package value="topic" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build topic (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="golang-topic" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/golang-pwd.go" />
+      <package value="topic" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build topic (2)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="golang-topic" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/golang-jwt.go" />
+      <package value="topic" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build topic (3)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="golang-topic" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/golang-viper.go" />
+      <package value="topic" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build topic" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="golang-topic" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/golang-redis.go" />
+      <package value="topic" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build topic" />
+        <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Build.go build topic (3)" />
+        <item itemvalue="Go Build.go build topic (2)" />
+        <item itemvalue="Go Build.go build topic (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat 测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat 测试" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <environment>
+      <map>
+        <entry key="GOPROXY" value="https://goproxy.cn,https://goproxy.io,direct" />
+      </map>
+    </environment>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1028" y="211" key="#Inspections" timestamp="1660029806453">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1028" y="211" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1660029806453" />
+    <state x="1151" y="333" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1660031214078">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1151" y="333" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1660031214078" />
+    <state x="1098" y="157" key="#go_build_topic" timestamp="1660035580619">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1098" y="157" key="#go_build_topic/0.0.1920.1040@0.0.1920.1040" timestamp="1660035580619" />
+    <state x="1098" y="157" key="#go_build_topic_(1)" timestamp="1660027717637">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1098" y="157" key="#go_build_topic_(1)/0.0.1920.1040@0.0.1920.1040" timestamp="1660027717637" />
+    <state x="1098" y="157" key="#go_build_topic_(2)" timestamp="1660028772987">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1098" y="157" key="#go_build_topic_(2)/0.0.1920.1040@0.0.1920.1040" timestamp="1660028772987" />
+    <state x="1096" y="157" key="#go_build_topic_(3)" timestamp="1660031182909">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1096" y="157" key="#go_build_topic_(3)/0.0.1920.1040@0.0.1920.1040" timestamp="1660031182909" />
+    <state x="1289" y="392" key="EnvironmentVariablesDialog" timestamp="1660012013967">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1289" y="392" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1660012013967" />
+    <state x="474" y="242" key="FileChooserDialogImpl" timestamp="1660092560089">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="474" y="242" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1660092560089" />
+    <state width="1030" height="277" key="GridCell.Tab.0.bottom" timestamp="1660092563066">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1030" height="277" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1660092563066" />
+    <state width="1030" height="277" key="GridCell.Tab.0.center" timestamp="1660092563065">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1030" height="277" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1660092563065" />
+    <state width="1030" height="277" key="GridCell.Tab.0.left" timestamp="1660092563065">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1030" height="277" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1660092563065" />
+    <state width="1030" height="277" key="GridCell.Tab.0.right" timestamp="1660092563065">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1030" height="277" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1660092563065" />
+    <state width="1030" height="344" key="GridCell.Tab.1.bottom" timestamp="1660037482091">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1030" height="344" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1660037482091" />
+    <state width="1030" height="344" key="GridCell.Tab.1.center" timestamp="1660037482091">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1030" height="344" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1660037482091" />
+    <state width="1030" height="344" key="GridCell.Tab.1.left" timestamp="1660037482091">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1030" height="344" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1660037482091" />
+    <state width="1030" height="344" key="GridCell.Tab.1.right" timestamp="1660037482091">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1030" height="344" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1660037482091" />
+    <state x="903" y="177" key="SettingsEditor" timestamp="1660012090606">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="903" y="177" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1660012090606" />
+    <state x="1104" y="256" key="Vcs.Push.Dialog.v2" timestamp="1660037809350">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1104" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1660037809350" />
+    <state x="190" y="250" width="1228" height="840" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1660029931317">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="190" y="250" width="1228" height="840" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1660029931317" />
+    <state x="1043" y="234" width="672" height="678" key="search.everywhere.popup" timestamp="1660008969823">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1043" y="234" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1660008969823" />
+  </component>
+</project>
