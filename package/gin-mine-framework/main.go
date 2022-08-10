@@ -15,8 +15,8 @@ func main() {
 	bootstrap := framework.NewBootstrap(ginInstance, config)
 
 	//	启动
-	bootstrap.
-		StartUpRouter().
-		StartUpConfig().
-		Run()
+	bootstrap.LoadRouter().LoadConfig()
+
+	bootstrap.Run()
+
 }
