@@ -2,6 +2,7 @@
 #### 所用的包
 * go get github.com/gin-gonic/gin gin框架
 * go get -u gorm.io/gorm gorm 数据库关系映射库
+* go get xorm.io/xorm 数据库关系映射库
 * go get -u gorm.io/driver/mysql mysql 操作库
 * go get github.com/spf13/viper Golang配置管理库viper
 * go install github.com/cosmtrek/air@latest golang web项目热部署air库
