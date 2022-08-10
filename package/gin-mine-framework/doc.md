@@ -10,6 +10,8 @@
 * go get github.com/jordan-wright/email  Golang发送邮件库email
 * go get -u github.com/golang-module/carbon/v2 Golang日期时间处理库Carbon
 * go get github.com/dchest/captcha Golang验证码
+* go get github.com/go-redis/redis/v8 // windows 
+* go get github.com/go-redis/redis/v9 // linux
 
 
 

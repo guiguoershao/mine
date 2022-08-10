@@ -1,4 +1,4 @@
-package library
+package core
 
 import (
 	"fmt"
@@ -16,7 +16,7 @@ func ORMInstance() *gorm.DB {
 	//db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	//	高级配置
-	db, err := gorm.Open(mysql.New(mysql.Config{
+	orm, err := gorm.Open(mysql.New(mysql.Config{
 		DSN:                       dsn,   // DSN data source name
 		DefaultStringSize:         256,   // string 类型字段的默认长度
 		DisableDatetimePrecision:  true,  // 禁用 datetime 精度，MySQL 5.6 之前的数据库不支持
@@ -29,4 +29,5 @@ func ORMInstance() *gorm.DB {
 		panic(err)
 	}
 
+	return orm
 }
