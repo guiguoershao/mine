@@ -20,9 +20,11 @@ func main() {
 	configInstance := configs.NewConfig(viper)
 
 	//	配置并读取至内存中
-	configInstance.SetConf("./configs", "config", "ini").ReadInConfig()
+	configInstance.SetConf(".", "config", "ini").ReadInConfig()
 
 	httpPort := configInstance.GetString("http.port")
+
+	//fmt.Printf("entity.mysql：%v, %v\n", configInstance.Entity.Mysql, configInstance.GetString("mysql.dsn"))
 
 	r.Run(":" + httpPort)
 }
