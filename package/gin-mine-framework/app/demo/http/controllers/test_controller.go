@@ -10,5 +10,6 @@ type TestController struct {
 }
 
 func (ctrl TestController) T1(ctx *gin.Context) {
+	//framework.Core().Redis().Ping()
 	ctrl.Jump.Ping(ctx)
 }

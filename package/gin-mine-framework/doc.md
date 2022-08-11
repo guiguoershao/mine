@@ -12,6 +12,10 @@
 * go get github.com/dchest/captcha Golang验证码
 * go get github.com/go-redis/redis/v8 // windows 
 * go get github.com/go-redis/redis/v9 // linux
+* go get -u go.uber.org/zap  zap Go 中快速、结构化、分级的日志记录。
+* go get github.com/natefinch/lumberjack  Lumberjack 是一个用于将日志写入滚动文件的 Go 包
+                                 
+
 
 
 

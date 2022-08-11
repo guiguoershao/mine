@@ -11,6 +11,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v9"
 	"github.com/spf13/viper"
+	"go.uber.org/zap"
 	"gorm.io/gorm"
 	"net/http"
 	"os"
@@ -27,12 +28,13 @@ type Bootstrap struct {
 
 	redisInstance *redis.Client
 	ormInstance   *gorm.DB
+	logger        *zap.Logger
 }
 
-var instance Bootstrap
+var instance *Bootstrap
 
 func NewBootstrap(ginInstance *gin.Engine, config map[string]string) *Bootstrap {
-	instance := &Bootstrap{
+	instance = &Bootstrap{
 		ginInstance: ginInstance,
 		confPath:    config["confPath"],
 		confName:    config["confName"],
@@ -42,7 +44,8 @@ func NewBootstrap(ginInstance *gin.Engine, config map[string]string) *Bootstrap 
 	return instance
 }
 
-func Core() Bootstrap {
+func Core() *Bootstrap {
+	console.Print("bootstrap: %v\n", instance)
 	return instance
 }
 
@@ -117,4 +120,13 @@ func (bs Bootstrap) Orm() *gorm.DB {
 		bs.ormInstance = sys_core.ORMInstance()
 	}
 	return bs.ormInstance
+}
+
+//	logger
+func (bs Bootstrap) Logger() *zap.Logger {
+	if bs.logger == nil {
+		bs.logger = sys_core.Logger()
+	}
+
+	return bs.logger
 }
