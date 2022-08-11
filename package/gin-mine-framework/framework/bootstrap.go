@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"gin-mine/configs"
 	"gin-mine/framework/console"
-	"gin-mine/framework/core"
+	"gin-mine/framework/sys_core"
 	"gin-mine/routes"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis/v9"
@@ -105,7 +105,7 @@ func (bs Bootstrap) Run() {
 //	Redis 客户端
 func (bs Bootstrap) Redis() *redis.Client {
 	if bs.redisInstance == nil {
-		bs.redisInstance = core.RedisInstance()
+		bs.redisInstance = sys_core.RedisInstance()
 	}
 	fmt.Printf("%v", bs.redisInstance)
 	return bs.redisInstance
@@ -114,7 +114,7 @@ func (bs Bootstrap) Redis() *redis.Client {
 //	Gorm 实例
 func (bs Bootstrap) Orm() *gorm.DB {
 	if bs.ormInstance == nil {
-		bs.ormInstance = core.ORMInstance()
+		bs.ormInstance = sys_core.ORMInstance()
 	}
 	return bs.ormInstance
 }

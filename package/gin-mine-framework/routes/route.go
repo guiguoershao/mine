@@ -1,6 +1,7 @@
 package routes
 
 import (
+	demo_controllers "gin-mine/app/demo/http/controllers"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -57,5 +58,8 @@ func (route Route) setWebRoute() Route {
 			"msg":  ctx.Request.RequestURI,
 		})
 	})
+
+	TestController := &demo_controllers.TestController{}
+	web.GET("/test", TestController.T1)
 	return route
 }

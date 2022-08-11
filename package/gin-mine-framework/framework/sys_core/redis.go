@@ -1,4 +1,4 @@
-package core
+package sys_core
 
 import (
 	"gin-mine/configs"
