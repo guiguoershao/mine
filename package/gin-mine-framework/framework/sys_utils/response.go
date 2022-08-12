@@ -2,7 +2,6 @@ package sys_utils
 
 import (
 	"fmt"
-	"gin-mine/framework/console"
 	"gin-mine/framework/sys_enum"
 )
 
@@ -43,21 +42,23 @@ func (response *ResponseBean) Response(code int, params ...interface{}) *Respons
 	response.Code = code
 	i := 0
 	isSetMsg := false
-	console.Print("paramType: %v", params)
-
 	if paramSize := len(params); paramSize > 0 {
 		for index := range params {
 			param := params[index]
 			paramType := fmt.Sprintf("%T", param)
-			console.Print("paramType: %v,  %v, %v", index, paramType, param)
+			//console.Print("paramType: %v,  %v, %v", index, paramType, param)
 			if paramType == "string" {
 				response.Msg = param.(string)
 				isSetMsg = true
 			} else {
 				response.Data = param
 			}
-			if index > 0 {
+			if i > 0 {
 				break
+			} else {
+				if isSetMsg {
+					response.Data = param
+				}
 			}
 			i++
 		}

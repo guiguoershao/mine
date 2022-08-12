@@ -84,6 +84,8 @@ func Config() *configs.Config {
 
 //	Redis 客户端
 func Redis() *redis.Client {
+
+	console.Print("asdf %v", redisInstance)
 	if redisInstance == nil {
 		redisInstance = sys_core.RedisInstance()
 	}

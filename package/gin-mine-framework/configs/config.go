@@ -56,7 +56,6 @@ func (c *Config) ReadInConfig() {
 
 	entity := entity{}
 	err = c.viper.Unmarshal(&entity)
-	console.Print("entity: %v", entity)
 	//c.viper.UnmarshalKey("mysql", &entity.Mysql)
 	c.Entity = entity
 	//fmt.Printf("entity.mysql：%v\n", c.GetString("mysql.dsn"))
