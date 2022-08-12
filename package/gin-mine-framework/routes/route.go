@@ -6,31 +6,26 @@ import (
 	"net/http"
 )
 
-type Route struct {
-	*gin.Engine
+func Dispatch(r *gin.Engine) {
+	baseRoute(r)
+	setApiRoute(r)
+	setWebRoute(r)
 }
 
-func (route Route) Dispatch() {
-	route.baseRoute().
-		setApiRoute().
-		setWebRoute()
-}
-
-func (route Route) baseRoute() Route {
+func baseRoute(r *gin.Engine) {
 	error404 := func(ctx *gin.Context) {
 		ctx.JSON(http.StatusNotFound, gin.H{
 			"code": -1,
 			"msg":  "访问的路由不存在",
 		})
 	}
-	route.NoRoute(error404)
-	route.NoMethod(error404)
-	return route
+	r.NoRoute(error404)
+	r.NoMethod(error404)
 }
 
 // api 路由
-func (route Route) setApiRoute() Route {
-	api := route.Group("/api")
+func setApiRoute(r *gin.Engine) {
+	api := r.Group("/api")
 	api.GET("/t1", func(ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": 0,
@@ -45,13 +40,11 @@ func (route Route) setApiRoute() Route {
 			"msg":  ctx.Request.RequestURI,
 		})
 	})
-
-	return route
 }
 
 // web 路由
-func (route Route) setWebRoute() Route {
-	web := route.Group("/")
+func setWebRoute(r *gin.Engine) {
+	web := r.Group("/")
 	web.GET("/web", func(ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{
 			"code": 0,
@@ -61,5 +54,4 @@ func (route Route) setWebRoute() Route {
 
 	TestController := &demo_controllers.TestController{}
 	web.GET("/test", TestController.T1)
-	return route
 }

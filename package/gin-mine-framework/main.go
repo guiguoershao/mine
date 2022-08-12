@@ -2,20 +2,14 @@ package main
 
 import (
 	"gin-mine/framework"
+	"gin-mine/routes"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	ginInstance := gin.Default()
 
-	config := make(map[string]string)
-	config["confPath"] = "."
-	config["confName"] = "config"
-	config["confType"] = "ini"
-	bootstrap := framework.NewBootstrap(ginInstance, config)
+	routes.Dispatch(ginInstance)
 
-	//	启动
-	bootstrap.LoadRouter().LoadConfig()
-
-	bootstrap.Run()
+	framework.Run(ginInstance)
 }

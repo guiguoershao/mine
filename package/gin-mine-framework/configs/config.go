@@ -6,6 +6,12 @@ import (
 	"sync"
 )
 
+const (
+	configName = "config"
+	configType = "ini"
+	configPath = "."
+)
+
 type Config struct {
 	viper  *viper.Viper
 	Entity entity
@@ -32,10 +38,10 @@ func GetInstance() *Config {
 	return instance
 }
 
-func (c *Config) SetConf(path, name, t string) *Config {
-	c.viper.AddConfigPath(path) // 路径
-	c.viper.SetConfigName(name) // 名称
-	c.viper.SetConfigType(t)    // 类型
+func (c *Config) SetConf() *Config {
+	c.viper.AddConfigPath(configPath) // 路径
+	c.viper.SetConfigName(configName) // 名称
+	c.viper.SetConfigType(configType) // 类型
 	return c
 }
 

@@ -17,6 +17,7 @@ func Logger() *zap.Logger {
 		MaxBackups: config.Log.MaxBackups, // 日志文件最多保存多少个备份
 		Compress:   config.Log.Compress,   // 是否压缩
 	}
+
 	encoderConfig := zapcore.EncoderConfig{
 		MessageKey:     "msg",
 		LevelKey:       "level",
