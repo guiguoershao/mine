@@ -14,7 +14,9 @@ use App\Rpc\Lib\TradeInterface;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Http\Server\Annotation\Mapping\RequestMethod;
+use Swoft\Limiter\Annotation\Mapping\RateLimiter;
 use Swoft\Rpc\Client\Annotation\Mapping\Reference;
+
 /**
  * Class TestController
  *
@@ -35,12 +37,22 @@ class TestController
     /**
      * @RequestMapping(route="trade/getList",method={RequestMethod::GET})
      *
+     * @RateLimiter(rate=1, max=2, fallback="limiterFallback")
      * @return array
      */
     public function getList(): array
     {
-        $result  = $this->tradeService->getList(12, 'type');
+        $result = $this->tradeService->getList(12, 'type');
 
         return $result;
+    }
+
+    /**
+     * 限流后调用该方法进行返回
+     * @return string[]
+     */
+    public function limiterFallback()
+    {
+        return ['limter' => '服务器开小差了'];
     }
 }
