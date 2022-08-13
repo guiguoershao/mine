@@ -10,6 +10,7 @@
 
 namespace App\Http\Controller;
 
+use App\Rpc\Lib\TradeInterface;
 use App\Rpc\Lib\UserInterface;
 use Exception;
 use Swoft\Co;
@@ -39,6 +40,25 @@ class RpcController
      * @var UserInterface
      */
     private $userService2;
+
+    /**
+     * @Reference(pool="trade.pool")
+     *
+     * @var TradeInterface
+     */
+    private $tradeService;
+
+    /**
+     * @RequestMapping("trade/getList")
+     *
+     * @return array
+     */
+    public function getTradeList()
+    {
+        $result = $this->tradeService->getList(12, 'type');
+
+        return $result;
+    }
 
     /**
      * @RequestMapping("getList")

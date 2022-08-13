@@ -132,9 +132,10 @@ return [
     ],
     'rpcServer'          => [
         'class' => ServiceServer::class,
-        'listener' => [
+        'port' => 8003,
+        /*'listener' => [
             'http' => bean('httpServer'),
-        ]
+        ],*/
     ],
     'wsServer'           => [
         'class'    => WebSocketServer::class,

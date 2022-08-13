@@ -35,7 +35,8 @@ return [
     ],
     'httpServer'         => [
         'class'    => HttpServer::class,
-        'port'     => 18306,
+//        'port'     => 18306,
+        'port'     => 8001,
         'listener' => [
             // 'rpc' => bean('rpcServer'),
             // 'tcp' => bean('tcpServer'),
@@ -57,7 +58,7 @@ return [
             // static handle
             // 'enable_static_handler'    => true,
             // 'document_root'            => dirname(__DIR__) . '/public',
-        ]
+        ],
     ],
     'httpDispatcher'     => [
         // Add global http middleware
@@ -117,7 +118,8 @@ return [
     'user'               => [
         'class'   => ServiceClient::class,
         'host'    => '127.0.0.1',
-        'port'    => 18307,
+//        'port'    => 18307,
+        'port'    => 8002, // user服务端口
         'setting' => [
             'timeout'         => 0.5,
             'connect_timeout' => 1.0,
@@ -126,9 +128,27 @@ return [
         ],
         'packet'  => bean('rpcClientPacket')
     ],
+    //  连接池
     'user.pool'          => [
         'class'  => ServicePool::class,
         'client' => bean('user'),
+    ],
+    'trade'               => [
+        'class'   => ServiceClient::class,
+        'host'    => '127.0.0.1',
+//        'port'    => 18307,
+        'port'    => 8003, // 订单服务端口
+        'setting' => [
+            'timeout'         => 0.5,
+            'connect_timeout' => 1.0,
+            'write_timeout'   => 10.0,
+            'read_timeout'    => 0.5,
+        ],
+        'packet'  => bean('rpcClientPacket'),
+    ],
+    'trade.pool'          => [
+        'class'  => ServicePool::class,
+        'client' => bean('trade'), // 从容器当中获取某个类的实例对象
     ],
     'rpcServer'          => [
         'class' => ServiceServer::class,
