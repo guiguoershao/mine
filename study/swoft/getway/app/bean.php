@@ -109,7 +109,8 @@ return [
     'redis'              => [
         'class'    => RedisDb::class,
         'host'     => '127.0.0.1',
-        'port'     => 6379,
+        'port'     => 26379,
+        'password'     => 'rvEBhbJP9m@YmaKL',
         'database' => 0,
         'option'   => [
             'prefix' => 'swoft:'
@@ -149,6 +150,14 @@ return [
     'trade.pool'          => [
         'class'  => ServicePool::class,
         'client' => bean('trade'), // 从容器当中获取某个类的实例对象
+    ],
+    //  令牌桶配置
+    'rateLimiter' => [
+        'class'      => \Swoft\Limiter\RateLimter::class,
+        'rateLimter' => bean('redisRateLimiter'),
+    ],
+    'redisRateLimiter' => [
+        'pool' => 'redis.pool'
     ],
     'rpcServer'          => [
         'class' => ServiceServer::class,
