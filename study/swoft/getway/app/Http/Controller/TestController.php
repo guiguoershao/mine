@@ -20,13 +20,13 @@ use Swoft\Rpc\Client\Annotation\Mapping\Reference;
  *
  * @since 2.0
  *
- * @Controller(prefix="/test")
+ * @Controller(prefix="test")
  */
 class TestController
 {
 
     /**
-     * @Reference(pool="trade.pool")
+     * @Reference(pool="trade.pool", version="1.0")
      *
      * @var TradeInterface
      */

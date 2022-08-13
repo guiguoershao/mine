@@ -5,7 +5,14 @@ namespace App\Rpc\Service;
 
 
 use App\Rpc\Lib\TradeInterface;
+use Swoft\Rpc\Server\Annotation\Mapping\Service;
 
+/**
+ * Class TradeService
+ * @package App\Rpc\Service
+ *
+ * @Service(version="1.0")
+ */
 class TradeService implements TradeInterface
 {
 
