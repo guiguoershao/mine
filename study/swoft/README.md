@@ -35,6 +35,7 @@
 * key/value storage：一个用来存储动态配置的系统。提供简单的HTTP接口，可以在任何地方操作。
 
 #### consul 安装
+* 文档 https://www.mianshigee.com/tutorial/Swoft/zh-cn-service-governance-consul.md
 * 官网 https://www.consul.io/downloads
 * wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
 * echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list

@@ -10,6 +10,7 @@
 
 namespace App\Http\Controller;
 
+use App\Model\Logic\ConsulLogic;
 use App\Rpc\Lib\TradeInterface;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
@@ -66,7 +67,14 @@ class TestController
         return ["code" => 0, "msg" => "心跳正常"];
     }
 
+    /**
+     * @RequestMapping(route="consul/services",method={RequestMethod::GET})
+     * @param ConsulLogic $consulLogic
+     * @return \Swoft\Consul\Response
+     */
     public function getConsulServices()
     {
+        $consulLogic = new ConsulLogic();
+        return $consulLogic->setAgent()->getServiceList();
     }
 }

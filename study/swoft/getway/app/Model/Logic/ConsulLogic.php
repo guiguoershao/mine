@@ -64,6 +64,11 @@ class ConsulLogic
      */
     private $session;
 
+    public function setAgent()
+    {
+        $this->agent = new Agent();
+        return $this;
+    }
     /**
      * @throws ClientException
      * @throws ServerException
@@ -75,5 +80,10 @@ class ConsulLogic
 
         $response = $this->kv->get('/test/my/key');
         var_dump($response->getBody(), $response->getResult());
+    }
+
+    public function getServiceList()
+    {
+        return $this->agent->services();
     }
 }
