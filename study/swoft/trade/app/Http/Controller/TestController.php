@@ -28,35 +28,6 @@ class TestController
 {
 
     /**
-     * @Reference(pool="trade.pool", version="1.0")
-     *
-     * @var TradeInterface
-     */
-    private $tradeService;
-
-    /**
-     * @RequestMapping(route="trade/getList",method={RequestMethod::GET})
-     *
-     * @RateLimiter(rate=1, max=2, fallback="limiterFallback")
-     * @return array
-     */
-    public function getList(): array
-    {
-        $result = $this->tradeService->getList(12, 'type');
-
-        return $result;
-    }
-
-    /**
-     * 限流后调用该方法进行返回
-     * @return string[]
-     */
-    public function limiterFallback()
-    {
-        return ['limter' => '服务器开小差了'];
-    }
-
-    /**
      * @RequestMapping(route="health",method={RequestMethod::GET})
      *
      * @return array
@@ -64,9 +35,5 @@ class TestController
     public function health()
     {
         return ["code" => 0, "msg" => "心跳正常"];
-    }
-
-    public function getConsulServices()
-    {
     }
 }
