@@ -16,6 +16,7 @@ use Swoft\Event\Annotation\Mapping\Listener;
 use Swoft\Event\EventHandlerInterface;
 use Swoft\Event\EventInterface;
 use Swoft\Http\Server\HttpServer;
+use Swoft\Log\Helper\CLog;
 use Swoft\Server\SwooleEvent;
 
 /**
@@ -42,6 +43,8 @@ class DeregisterServiceListener implements EventHandlerInterface
         /** @var HttpServer $httpServer */
         $httpServer = $event->getTarget();
 
-        //$this->agent->deregisterService('swoft');
+        $this->agent->deregisterService('GetWay_001');
+
+        CLog::info("arrive in here, ".__METHOD__."\n");
     }
 }

@@ -16,6 +16,7 @@ use Swoft\Event\Annotation\Mapping\Listener;
 use Swoft\Event\EventHandlerInterface;
 use Swoft\Event\EventInterface;
 use Swoft\Http\Server\HttpServer;
+use Swoft\Log\Helper\CLog;
 use Swoft\Server\SwooleEvent;
 
 /**
@@ -43,12 +44,12 @@ class RegisterServiceListener implements EventHandlerInterface
         $httpServer = $event->getTarget();
 
         $service = [
-            'ID'                => 'swoft',
-            'Name'              => 'swoft',
+            'ID'                => 'User_001',
+            'Name'              => 'User',
             'Tags'              => [
-                'http'
+                'rpc'
             ],
-            'Address'           => '127.0.0.1',
+            'Address'           => '120.77.156.30', // 127.0.0.1
             'Port'              => $httpServer->getPort(),
             'Meta'              => [
                 'version' => '1.0'
@@ -62,7 +63,30 @@ class RegisterServiceListener implements EventHandlerInterface
 
 
         // Register
-        //        $this->agent->registerService($service);
-        //        CLog::info('Swoft http register service success by consul!');
+        $this->agent->registerService($service);
+        CLog::info('Swoft http register service(User_001) success by consul!');
+
+        $service = [
+            'ID'                => 'User_002',
+            'Name'              => 'User',
+            'Tags'              => [
+                'rpc'
+            ],
+            'Address'           => '120.77.156.30', // 127.0.0.1
+            'Port'              => $httpServer->getPort(),
+            'Meta'              => [
+                'version' => '1.0'
+            ],
+            'EnableTagOverride' => false,
+            'Weights'           => [
+                'Passing' => 10,
+                'Warning' => 1
+            ]
+        ];
+
+
+        // Register
+        $this->agent->registerService($service);
+        CLog::info('Swoft http register service(User_002) success by consul!');
     }
 }

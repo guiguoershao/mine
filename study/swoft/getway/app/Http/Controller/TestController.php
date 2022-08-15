@@ -12,6 +12,7 @@ namespace App\Http\Controller;
 
 use App\Model\Logic\ConsulLogic;
 use App\Rpc\Lib\TradeInterface;
+use App\Rpc\Lib\UserInterface;
 use Swoft\Http\Server\Annotation\Mapping\Controller;
 use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
 use Swoft\Http\Server\Annotation\Mapping\RequestMethod;
@@ -35,6 +36,15 @@ class TestController
      */
     private $tradeService;
 
+
+
+    /**
+     * @Reference(pool="user.pool", version="1.2")
+     *
+     * @var UserInterface
+     */
+    private $userService2;
+
     /**
      * @RequestMapping(route="trade/getList",method={RequestMethod::GET})
      *
@@ -43,9 +53,10 @@ class TestController
      */
     public function getList(): array
     {
-        $result = $this->tradeService->getList(12, 'type');
-
-        return $result;
+        return [
+            'trade' => $this->tradeService->getList(12, 'type'),
+            'user' => $this->userService2->getList(12, 'type'),
+        ];
     }
 
     /**

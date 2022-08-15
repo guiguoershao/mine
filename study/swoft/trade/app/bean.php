@@ -194,4 +194,12 @@ return [
     ],
     'cliRouter'          => [// 'disabledGroups' => ['demo', 'test'],
     ],
+    /**
+     * @see
+     */
+    'consul' => [
+        'host' => '120.77.156.30',
+        'port' => 8011,
+        'timeout' => 5,
+    ]
 ];
