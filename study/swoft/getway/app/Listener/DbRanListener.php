@@ -40,6 +40,6 @@ class DbRanListener implements EventHandlerInterface
         $bindings = $event->getParam(1);
 
         $rawSql = $connection->getRawSql($querySql, $bindings);
-        // output()->info($rawSql);
+         output()->info($rawSql);
     }
 }
