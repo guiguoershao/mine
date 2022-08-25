@@ -53,6 +53,20 @@ class TestController
      */
     public function getList(): array
     {
+        $event = \Swoft::trigger('test.event', 'target');
+        // 获取
+        $target = $event->getParams();
+        var_dump($target);
+
+        $event = \Swoft::trigger('test.event1', 'target');
+        // 获取
+        $target = $event->getParams();
+        var_dump($target);
+
+        $event = \Swoft::trigger('test.event2', 'target');
+        $target = $event->getParams();
+        var_dump($target);
+
         return [
             'trade' => $this->tradeService->getList(12, 'type'),
             'user' => $this->userService2->getList(12, 'type'),
