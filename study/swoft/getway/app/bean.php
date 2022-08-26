@@ -228,5 +228,8 @@ return [
         'host' => '120.77.156.30',
         'port' => 8011,
         'timeout' => 5,
-    ]
+    ],
+    'config' => [
+        'env' => env('APP_ENV'),
+    ],
 ];
