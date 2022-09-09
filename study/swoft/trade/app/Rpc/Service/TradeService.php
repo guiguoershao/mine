@@ -11,7 +11,7 @@ use Swoft\Rpc\Server\Annotation\Mapping\Service;
  * Class TradeService
  * @package App\Rpc\Service
  *
- * @Service(version="1.0")
+ * @Service(version="2.0")
  */
 class TradeService implements TradeInterface
 {
@@ -25,7 +25,11 @@ class TradeService implements TradeInterface
     public function getList(int $id, $type, int $count = 10): array
     {
         return [
-            'list' => "这里是数据列表"
+            'code' => 0,
+            'data' => [
+                'list' => "这里是数据列表",
+            ],
+            'msg' => 'ok'
         ];
     }
 

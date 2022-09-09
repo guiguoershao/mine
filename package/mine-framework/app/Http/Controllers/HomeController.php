@@ -83,7 +83,7 @@ BsN0a03Jn0yt2bZliwIDAQAB
 
     public function test()
     {
-        $stack = new \SplStack();
+        /*$stack = new \SplStack();
         $stack->push("w1");
         $stack->push("w2");
         $stack->push("w3");
@@ -101,7 +101,45 @@ BsN0a03Jn0yt2bZliwIDAQAB
         dump($stack->pop());
         dump($stack->pop());
         dump($stack->pop());
-        dump($stack->pop());
+        dump($stack->pop());*/
+
+        $arr = $this->request('tcp://127.0.0.1:8003', \App\Rpc\Lib\TradeInterface::class,  'getList',  [1, 2], "2.0");
+        dd($arr);
     }
+
+    const RPC_EOL = "\r\n\r\n";
+
+    function request($host, $class, $method, $param, $version = '1.0', $ext = []) {
+        $fp = stream_socket_client($host, $errno, $errstr);
+        if (!$fp) {
+            throw new \Exception("stream_socket_client fail errno={$errno} errstr={$errstr}");
+        }
+
+        $req = [
+            "jsonrpc" => '2.0',
+            "method" => sprintf("%s::%s::%s", $version, $class, $method),
+            'params' => $param,
+            'id' => '',
+            'ext' => $ext,
+        ];
+        $data = json_encode($req) . self::RPC_EOL;
+        fwrite($fp, $data);
+
+        $result = '';
+        while (!feof($fp)) {
+            $tmp = stream_socket_recvfrom($fp, 1024);
+
+            if ($pos = strpos($tmp, self::RPC_EOL)) {
+                $result .= substr($tmp, 0, $pos);
+                break;
+            } else {
+                $result .= $tmp;
+            }
+        }
+
+        fclose($fp);
+        return json_decode($result, true);
+    }
+
 
 }

@@ -38,7 +38,7 @@ return [
 //        'port'     => 18306,
         'port' => 8004,
         'listener' => [
-             'rpc' => bean('rpcServer'),
+//             'rpc' => bean('rpcServer'),
             // 'tcp' => bean('tcpServer'),
         ],
         'process'  => [
