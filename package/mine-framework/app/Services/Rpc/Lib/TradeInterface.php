@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Rpc\Lib;
+namespace App\Services\Rpc\Lib;
 
 /**
  * Class TradeInterface

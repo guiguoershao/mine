@@ -4,7 +4,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Rpc\Services\TradeRpcClient;
+use App\Services\Rpc\RpcClientService;
 use App\Services\MyRedisLock;
 use guiguoershao\Facades\ConfigFacade;
 use Library;
@@ -103,10 +103,11 @@ BsN0a03Jn0yt2bZliwIDAQAB
         dump($stack->pop());
         dump($stack->pop());
         dump($stack->pop());*/
-        dd(TradeRpcClient::trade());
-        $arr = TradeRpcClient::trade()->getList(1, 2);
+
+        $arr = RpcClientService::trade()->getList(1, 2);
+        dump($arr);
 //        $arr = $this->request('tcp://127.0.0.1:8003', \App\Rpc\Lib\TradeInterface::class,  'getList',  [1, 2], "2.0");
-        dd($arr);
+//        dd($arr);
     }
 
     const RPC_EOL = "\r\n\r\n";
@@ -124,6 +125,7 @@ BsN0a03Jn0yt2bZliwIDAQAB
             'id' => '',
             'ext' => $ext,
         ];
+
         $data = json_encode($req) . self::RPC_EOL;
         fwrite($fp, $data);
 

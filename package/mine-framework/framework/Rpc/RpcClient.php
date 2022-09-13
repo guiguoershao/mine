@@ -5,9 +5,9 @@ namespace guiguoershao\Rpc;
 
 
 use guiguoershao\Exception\MiniException;
-use guiguoershao\Sys\Configs\Config;
+use Config;
 
-class RpcClient
+abstract class RpcClient
 {
     /**
      * Default host
@@ -24,23 +24,36 @@ class RpcClient
     protected $port = 18307;
 
     /**
+     * @var string
+     */
+    protected $version = '2.0';
+
+    /**
      * Setting
      *
      * @var array
      */
     protected $setting = [];
 
-    /**
-     * 请求class
-     * @var null
-     */
-    protected $class = null;
-
 
     const RPC_EOL = "\r\n\r\n";
 
+    public function __construct()
+    {
+        $serviceName = $this->getRpcServiceName();
+        $config = Config::get('app.rpc_service_list')[$serviceName] ?? null;
 
-    public function __call($name, ...$arguments)
+        if (empty($config)) {
+            throw new MiniException("not load rpc-service[{$serviceName}] config");
+        }
+        $this->host = $config['host'];
+        $this->port = $config['port'];
+        $this->setting = $config['setting'];
+        $this->version = $config['version'];
+    }
+
+
+    public function __call($name, $arguments)
     {
         if (method_exists($this, $name)) {
             return $this->{$name}(...$arguments);
@@ -48,6 +61,18 @@ class RpcClient
             return $this->request($name, $arguments);
         }
     }
+
+    /**
+     * 获取RPC服务名称
+     * @return string
+     */
+    abstract protected function getRpcServiceName(): string;
+
+    /**
+     * 获取RPC服务类，对应swoft端接口类 名称
+     * @return string
+     */
+    abstract protected function getRpcServiceClassName(): string;
 
 
     /**
@@ -58,16 +83,16 @@ class RpcClient
      * @return mixed
      * @throws \Exception
      */
-    protected function request($method, $param, $version = '1.0', $ext = [])
+    protected function request($method, $param, $ext = [])
     {
-        $fp = stream_socket_client("tcp://{$this->host}:{$this->port}", $errno, $errstr);
+        $fp = stream_socket_client("tcp://{$this->host}:{$this->port}", $errno, $errstr, $this->setting['connect_timeout'] ?? 5);
         if (!$fp) {
             throw new \Exception("stream_socket_client fail errno={$errno} errstr={$errstr}");
         }
 
         $req = [
             "jsonrpc" => '2.0',
-            "method" => sprintf("%s::%s::%s", $version, $this->class, $method),
+            "method" => sprintf("%s::%s::%s", $this->version, $this->getRpcServiceClassName(), $method),
             'params' => $param,
             'id' => '',
             'ext' => $ext,
