@@ -10,4 +10,19 @@ return [
         'Config' => \guiguoershao\Facades\ConfigFacade::class,
         'MyRedis' => \App\Facades\RedisFacade::class,
     ],
+
+    'rpc.service.list' => [
+        'trade' => [
+            'class'   => \guiguoershao\Rpc\RpcClient::class,
+            'host'    => '127.0.0.1',
+            'port'    => 8003, // 订单服务端口
+            'setting' => [
+                'timeout'         => 0.5,
+                'connect_timeout' => 1.0,
+                'write_timeout'   => 10.0,
+                'read_timeout'    => 0.5,
+            ],
+//            'packet'  => bean('rpcClientPacket'),
+        ]
+    ],
 ];
