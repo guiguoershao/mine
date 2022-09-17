@@ -10,4 +10,9 @@ declare(strict_types=1);
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
 return [
+    'InnerHttp' => Hyperf\HttpServer\Server::class,
+//    \App\Services\UserServiceInterface::class => \App\Services\UserService::class,
+    \App\Services\UserServiceInterface::class => \App\Services\UserServiceFactory::class
+
+
 ];

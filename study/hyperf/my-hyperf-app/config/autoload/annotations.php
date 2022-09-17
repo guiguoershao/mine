@@ -14,8 +14,11 @@ return [
         'paths' => [
             BASE_PATH . '/app',
         ],
+        //  ignore_annotations 数组内的注解都会被注解扫描器忽略
         'ignore_annotations' => [
             'mixin',
+        ],
+        'collectors' => [
         ],
     ],
 ];

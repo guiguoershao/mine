@@ -15,4 +15,8 @@ return [
         'packer' => Hyperf\Utils\Packer\PhpSerializerPacker::class,
         'prefix' => 'c:',
     ],
+
+    'user_service' => [
+        'enable' => true,
+    ]
 ];
