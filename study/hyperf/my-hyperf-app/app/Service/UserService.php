@@ -8,6 +8,7 @@ use App\Event\UserRegistered;
 use App\Model\User;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Hyperf\Di\Annotation\Inject;
+use Hyperf\Cache\Annotation\Cacheable;
 
 class UserService implements UserServiceInterface
 {
@@ -31,10 +32,12 @@ class UserService implements UserServiceInterface
 
     /**
      * @param int $id
+     * @Cacheable(prefix="user", ttl=60, listener="user-update")
      * @return array
      */
     public function getInfoById(int $id)
     {
+        var_dump(1);
         // 我们假设存在一个 Info 实体
         return [
 //            'is_cache' => $this->enableCache,

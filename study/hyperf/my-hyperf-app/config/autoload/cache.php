@@ -11,9 +11,14 @@ declare(strict_types=1);
  */
 return [
     'default' => [
-        'driver' => Hyperf\Cache\Driver\RedisDriver::class,
+        'driver' => Hyperf\Cache\Driver\RedisDriver::class, // 缓存驱动，默认为 Redis
+        'packer' => Hyperf\Utils\Packer\PhpSerializerPacker::class, // 打包器
+        'prefix' => 'c:', // 缓存前缀
+    ],
+
+    'co' => [
+        'driver' => Hyperf\Cache\Driver\CoroutineMemoryDriver::class,
         'packer' => Hyperf\Utils\Packer\PhpSerializerPacker::class,
-        'prefix' => 'c:',
     ],
 
     'user_service' => [

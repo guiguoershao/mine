@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\ApiException;
+use App\Service\SystemService;
 use App\Service\UserServiceInterface;
 use Hyperf\Context\Context;
 use Hyperf\Di\Annotation\Inject;
@@ -40,6 +41,11 @@ class IndexController extends AbstractController
      * @var UserServiceInterface
      */
     protected $userService;
+    /**
+     * @Inject()
+     * @var SystemService
+     */
+    protected $systemService;
 
     /**
      * @param ConfigInterface $config
@@ -47,14 +53,18 @@ class IndexController extends AbstractController
      */
     public function index(ConfigInterface $config, RequestInterface $request, ResponseInterface $response)
     {
-        $a = [];
-        var_dump($a);
+        // 测试异常捕捉
+//        $a = [];
+//        var_dump($a[1]);
 //        throw new ApiException("请求错误", -1);
 
         // 协成测试
-        $this->co_test();
+//        return $this->co_test();
+        //  测试缓存
+//        return $this->cache();
 
-        $payload = $this->userService->getInfoById(1);
+        $this->systemService->flushCache(2);
+        $payload = $this->userService->getInfoById(2);
         $this->userService->register($payload);
 
 
@@ -73,7 +83,6 @@ class IndexController extends AbstractController
         }
 
 //        return $response->download('/data/app/mine/study/hyperf/my-hyperf-app/public/upload/1.jpg', '1.jpg');
-
 
         return $response->write('Hello Hyperf');
 
@@ -95,6 +104,11 @@ class IndexController extends AbstractController
             'msg' => 'ok',
             'data' => null,
         ]);
+    }
+
+    protected function cache()
+    {
+
     }
 
     protected function co_test()
