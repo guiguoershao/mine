@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Exception\ApiException;
+use App\Log;
 use App\Service\SystemService;
 use App\Service\UserServiceInterface;
 use Hyperf\Context\Context;
@@ -22,6 +23,7 @@ use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\HttpServer\Request;
 use Hyperf\HttpServer\Response;
+use Hyperf\Logger\LoggerFactory;
 use Hyperf\Utils\Coroutine;
 use Hyperf\Utils\Exception\ParallelExecutionException;
 use Hyperf\Utils\Parallel;
@@ -48,11 +50,19 @@ class IndexController extends AbstractController
     protected $systemService;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
+
+    /**
      * @param ConfigInterface $config
      * @return array
      */
-    public function index(ConfigInterface $config, RequestInterface $request, ResponseInterface $response)
+    public function index(ConfigInterface $config, RequestInterface $request, ResponseInterface $response, LoggerFactory $loggerFactory)
     {
+        // 第一个参数对应日志的 name, 第二个参数对应 config/autoload/logger.php 内的 key
+//        $this->logger = $loggerFactory->get('log', 'default');
+
         // 测试异常捕捉
 //        $a = [];
 //        var_dump($a[1]);
@@ -63,9 +73,12 @@ class IndexController extends AbstractController
         //  测试缓存
 //        return $this->cache();
 
-        $this->systemService->flushCache(2);
-        $payload = $this->userService->getInfoById(2);
+//        $this->systemService->flushCache(1);
+        $payload = $this->userService->getInfoById(1);
         $this->userService->register($payload);
+
+
+        Log::get('app')->error("这里是测试日志-222", $payload);
 
 
         $user = $this->request->input('user', 'Hyperf');
