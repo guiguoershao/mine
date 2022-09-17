@@ -17,6 +17,7 @@ use Hyperf\Context\Context;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\RequestMapping;
 use Hyperf\HttpServer\Contract\RequestInterface;
+use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\HttpServer\Request;
 use Hyperf\HttpServer\Response;
 use Hyperf\Utils\Coroutine;
@@ -24,6 +25,7 @@ use Hyperf\Utils\Exception\ParallelExecutionException;
 use Hyperf\Utils\Parallel;
 use Psr\Http\Message\ServerRequestInterface;
 use Hyperf\Contract\ConfigInterface;
+use Hyperf\HttpMessage\Cookie\Cookie;
 
 /**
  * Class IndexController
@@ -42,7 +44,7 @@ class IndexController extends AbstractController
      * @param ConfigInterface $config
      * @return array
      */
-    public function index(ConfigInterface $config)
+    public function index(ConfigInterface $config, RequestInterface $request, ResponseInterface $response)
     {
         // 协成测试
         $this->co_test();
@@ -53,12 +55,44 @@ class IndexController extends AbstractController
 
         $user = $this->request->input('user', 'Hyperf');
         $method = $this->request->getMethod();
-        return [
+        /*return [
             Coroutine::inCoroutine(), // 判断是否在协成状态
             Coroutine::id(), // 当前协成id
             'method' => $method,
             'message' => "Hello {$user}.",
-        ];
+        ];*/
+        $cookie = new Cookie('key', 'value');
+
+        for ($i=0; $i<10; $i++) {
+            $response->write((string) $i);
+        }
+
+//        return $response->download('/data/app/mine/study/hyperf/my-hyperf-app/public/upload/1.jpg', '1.jpg');
+
+
+        return $response->write('Hello Hyperf');
+
+        return $response->withCookie($cookie)->withContent('Hello Hyperf.');
+
+    }
+
+    public function upload(RequestInterface $request, ResponseInterface $response)
+    {
+        $file = $request->file('photo');
+        // 该路径为上传文件的临时路径
+        $path = $file->getPath();
+        var_dump($path);
+        // 由于 Swoole 上传文件的 tmp_name 并没有保持文件原名，所以这个方法已重写为获取原文件名的后缀名
+        $extension = $file->getExtension();
+        var_dump($file->getMimeType());
+        $file->moveTo('/data/app/mine/study/hyperf/my-hyperf-app/public/upload/1.jpg');
+        var_dump(1);
+
+        return $response->xml([
+            'code' => 0,
+            'msg' => 'ok',
+            'data' => null,
+        ]);
     }
 
     protected function co_test()

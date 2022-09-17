@@ -11,7 +11,11 @@ declare(strict_types=1);
  */
 use Hyperf\HttpServer\Router\Router;
 
-Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index', [
+    'middleware' => [\App\Middleware\Auth\FooMiddleware::class, \App\Middleware\CorsMiddleware::class]
+]);
+
+Router::post('/upload', 'App\Controller\IndexController@upload');
 
 Router::get('/favicon.ico', function () {
     return '';
