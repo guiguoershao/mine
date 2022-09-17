@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services;
+namespace App\Service;
 
 use Hyperf\Contract\ConfigInterface;
 use Psr\Container\ContainerInterface;

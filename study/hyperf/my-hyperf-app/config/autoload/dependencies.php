@@ -11,8 +11,8 @@ declare(strict_types=1);
  */
 return [
     'InnerHttp' => Hyperf\HttpServer\Server::class,
-//    \App\Services\UserServiceInterface::class => \App\Services\UserService::class,
-    \App\Services\UserServiceInterface::class => \App\Services\UserServiceFactory::class
+//    \App\Service\UserServiceInterface::class => \App\Service\UserService::class,
+    \App\Service\UserServiceInterface::class => \App\Service\UserServiceFactory::class
 
 
 ];

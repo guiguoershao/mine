@@ -4,8 +4,14 @@
 namespace App\Listener;
 
 use App\Event\UserRegistered;
+use App\Model\User;
 use Hyperf\Event\Contract\ListenerInterface;
+use Hyperf\Event\Annotation\Listener;
 
+/**
+ * Class UserRegisteredListener
+ * @package App\Listener
+ */
 class UserRegisteredListener implements ListenerInterface
 {
     public function listen(): array
@@ -19,13 +25,15 @@ class UserRegisteredListener implements ListenerInterface
     /**
      * @param UserRegistered $event
      */
-    public function process(UserRegistered $event)
+    public function process(object $event)
     {
         // 事件触发后该监听器要执行的代码写在这里，比如该示例下的发送用户注册成功短信等
         // 直接访问 $event 的 user 属性获得事件触发时传递的参数值
         // $event->user;
 
-        var_dump($event->user);
+        /** @var User $user */
+        $user = $event->user;
+        var_dump($user->toArray());
 
     }
 }

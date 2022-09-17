@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Services\UserServiceInterface;
+use App\Service\UserServiceInterface;
 use Hyperf\Context\Context;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\RequestMapping;
@@ -47,7 +47,8 @@ class IndexController extends AbstractController
         // 协成测试
         $this->co_test();
 
-        var_dump($this->userService->getInfoById(1));
+        $payload = $this->userService->getInfoById(1);
+        $this->userService->register($payload);
 
 
         $user = $this->request->input('user', 'Hyperf');
