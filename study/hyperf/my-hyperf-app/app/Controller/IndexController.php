@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Exception\ApiException;
 use App\Service\UserServiceInterface;
 use Hyperf\Context\Context;
 use Hyperf\Di\Annotation\Inject;
@@ -46,6 +47,10 @@ class IndexController extends AbstractController
      */
     public function index(ConfigInterface $config, RequestInterface $request, ResponseInterface $response)
     {
+            $a = [];
+            var_dump($a);
+
+        throw new ApiException("请求错误", -1);
         // 协成测试
         $this->co_test();
 
@@ -81,12 +86,9 @@ class IndexController extends AbstractController
         $file = $request->file('photo');
         // 该路径为上传文件的临时路径
         $path = $file->getPath();
-        var_dump($path);
         // 由于 Swoole 上传文件的 tmp_name 并没有保持文件原名，所以这个方法已重写为获取原文件名的后缀名
         $extension = $file->getExtension();
-        var_dump($file->getMimeType());
         $file->moveTo('/data/app/mine/study/hyperf/my-hyperf-app/public/upload/1.jpg');
-        var_dump(1);
 
         return $response->xml([
             'code' => 0,
