@@ -47,10 +47,10 @@ class IndexController extends AbstractController
      */
     public function index(ConfigInterface $config, RequestInterface $request, ResponseInterface $response)
     {
-            $a = [];
-            var_dump($a);
+        $a = [];
+        var_dump($a);
+//        throw new ApiException("请求错误", -1);
 
-        throw new ApiException("请求错误", -1);
         // 协成测试
         $this->co_test();
 
@@ -68,8 +68,8 @@ class IndexController extends AbstractController
         ];*/
         $cookie = new Cookie('key', 'value');
 
-        for ($i=0; $i<10; $i++) {
-            $response->write((string) $i);
+        for ($i = 0; $i < 10; $i++) {
+            $response->write((string)$i);
         }
 
 //        return $response->download('/data/app/mine/study/hyperf/my-hyperf-app/public/upload/1.jpg', '1.jpg');
