@@ -29,6 +29,7 @@ use Hyperf\Utils\Collection;
 use Hyperf\Utils\Coroutine;
 use Hyperf\Utils\Exception\ParallelExecutionException;
 use Hyperf\Utils\Parallel;
+use Hyperf\Validation\Contract\ValidatorFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\HttpMessage\Cookie\Cookie;
@@ -59,6 +60,12 @@ class IndexController extends AbstractController
     protected $logger;
 
     /**
+     * @Inject()
+     * @var ValidatorFactoryInterface
+     */
+    protected $validationFactory;
+
+    /**
      * @param ConfigInterface $config
      * @return array
      */
@@ -66,6 +73,27 @@ class IndexController extends AbstractController
     {
         $user = $this->request->input('user', 'Hyperf');
         $method = $this->request->getMethod();
+
+        $validator = $this->validationFactory->make(
+            $request->all(),
+            [
+                'foo' => 'required',
+                'bar' => 'required',
+            ],
+            [
+                'foo.required' => 'foo is required',
+                'bar.required' => 'bar is required',
+            ]
+        );
+
+//        $validator->validate();
+        if ($validator->fails()){
+            // Handle exception
+            $errorMessage = $validator->errors()->first();
+            var_dump($errorMessage);
+        }
+        // Do something
+
         // 第一个参数对应日志的 name, 第二个参数对应 config/autoload/logger.php 内的 key
 //        $this->logger = $loggerFactory->get('log', 'default');
 
@@ -96,8 +124,6 @@ class IndexController extends AbstractController
         $perPage = 2;
         $users = array_values($collection->forPage($currentPage, $perPage)->toArray());
 
-        var_dump($users);
-        return $users;
 //        $data = new Paginator($users, $perPage, $currentPage);
 //        return $data;
         /*return [

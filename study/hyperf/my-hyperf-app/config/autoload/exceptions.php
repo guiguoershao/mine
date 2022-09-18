@@ -15,6 +15,7 @@ return [
 //            Hyperf\ExceptionHandler\Handler\WhoopsExceptionHandler::class,
             Hyperf\HttpServer\Exception\Handler\HttpExceptionHandler::class,
             App\Exception\Handler\AppExceptionHandler::class,
+//            Hyperf\Validation\ValidationExceptionHandler::class,// 默认的验证异常处理
             App\Exception\Handler\ApiExceptionHandler::class,
         ],
     ],

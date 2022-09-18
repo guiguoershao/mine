@@ -13,7 +13,7 @@ return [
     //  声明依赖, 使用 StdoutLoggerInterface 的地方, 由实际依赖的 StdoutLoggerFactory 实例化的类来完成
 //    \Hyperf\Contract\StdoutLoggerInterface::class => \App\StdoutLoggerFactory::class,
 
-    'InnerHttp' => Hyperf\HttpServer\Server::class,
+//    'InnerHttp' => Hyperf\HttpServer\Server::class,
 //    \App\Service\UserServiceInterface::class => \App\Service\UserService::class,
     \App\Service\UserServiceInterface::class => \App\Service\UserServiceFactory::class,
 

@@ -27,7 +27,7 @@ return [
                 Event::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
             ],
         ],
-        [
+        /*[
             'name' => 'InnerHttp',
             'type' => Server::SERVER_HTTP,
             'host' => '0.0.0.0',
@@ -36,7 +36,7 @@ return [
             'callbacks' => [
                 Event::ON_REQUEST => ['InnerHttp', 'onRequest'],
             ],
-        ],
+        ],*/
 
         [
             'name' => 'jsonrpc',
