@@ -257,4 +257,9 @@ class IndexController extends AbstractController
             var_dump($res);
         });*/
     }
+
+    public function db()
+    {
+
+    }
 }
