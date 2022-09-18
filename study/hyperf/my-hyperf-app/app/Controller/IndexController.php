@@ -66,6 +66,12 @@ class IndexController extends AbstractController
     protected $validationFactory;
 
     /**
+     * @Inject()
+     * @var \Hyperf\Contract\SessionInterface
+     */
+    protected $session;
+
+    /**
      * @param ConfigInterface $config
      * @return array
      */
@@ -111,6 +117,8 @@ class IndexController extends AbstractController
         $payload = $this->userService->getInfoById(1);
         $this->userService->register($payload);
 
+        $this->session->set('foo', 'bar');
+var_dump($this->session->get('foo'));
         Log::get('app')->error("这里是测试日志-222", $payload);
 
         // 这里根据 $currentPage 和 $perPage 进行数据查询，以下使用 Collection 代替

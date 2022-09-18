@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * This file is part of Hyperf.
  *
@@ -9,15 +10,19 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
 use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index', [
-    'middleware' => [\App\Middleware\Auth\FooMiddleware::class, \App\Middleware\CorsMiddleware::class]
+    'middleware' => [
+        \App\Middleware\Auth\FooMiddleware::class,
+        \App\Middleware\CorsMiddleware::class,
+    ],
 ]);
 
 Router::post('/upload', 'App\Controller\IndexController@upload');
 
-Router::addRoute(['GET', 'POST',],'/db', 'App\Controller\IndexController@db');
+Router::addRoute(['GET', 'POST',], '/db', 'App\Controller\IndexController@db');
 
 Router::get('/favicon.ico', function () {
     return '';
