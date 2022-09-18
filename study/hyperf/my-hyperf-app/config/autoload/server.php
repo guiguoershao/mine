@@ -63,6 +63,10 @@ return [
         Constant::OPTION_MAX_REQUEST => 100000, // 设置 worker 进程的最大任务数 默认 100000
         Constant::OPTION_SOCKET_BUFFER_SIZE => 2 * 1024 * 1024, // 配置客户端连接的缓存区长度
         Constant::OPTION_BUFFER_OUTPUT_SIZE => 2 * 1024 * 1024,
+
+        // 静态资源
+        'document_root' => BASE_PATH . '/public',
+        'enable_static_handler' => true,
     ],
     'callbacks' => [
         Event::ON_WORKER_START => [Hyperf\Framework\Bootstrap\WorkerStartCallback::class, 'onWorkerStart'],

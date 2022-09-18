@@ -17,6 +17,7 @@ use App\Log;
 use App\Service\SystemService;
 use App\Service\UserServiceInterface;
 use Hyperf\Context\Context;
+use Hyperf\Contract\PaginatorInterface;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\RequestMapping;
 use Hyperf\HttpServer\Contract\RequestInterface;
@@ -24,12 +25,15 @@ use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\HttpServer\Request;
 use Hyperf\HttpServer\Response;
 use Hyperf\Logger\LoggerFactory;
+use Hyperf\Utils\Collection;
 use Hyperf\Utils\Coroutine;
 use Hyperf\Utils\Exception\ParallelExecutionException;
 use Hyperf\Utils\Parallel;
 use Psr\Http\Message\ServerRequestInterface;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\HttpMessage\Cookie\Cookie;
+use Hyperf\Paginator\Paginator;
+
 
 /**
  * Class IndexController
@@ -60,6 +64,8 @@ class IndexController extends AbstractController
      */
     public function index(ConfigInterface $config, RequestInterface $request, ResponseInterface $response, LoggerFactory $loggerFactory)
     {
+        $user = $this->request->input('user', 'Hyperf');
+        $method = $this->request->getMethod();
         // 第一个参数对应日志的 name, 第二个参数对应 config/autoload/logger.php 内的 key
 //        $this->logger = $loggerFactory->get('log', 'default');
 
@@ -77,12 +83,23 @@ class IndexController extends AbstractController
         $payload = $this->userService->getInfoById(1);
         $this->userService->register($payload);
 
-
         Log::get('app')->error("这里是测试日志-222", $payload);
 
+        // 这里根据 $currentPage 和 $perPage 进行数据查询，以下使用 Collection 代替
+        $collection = new Collection([
+            ['id' => 1, 'name' => 'Tom'],
+            ['id' => 2, 'name' => 'Sam'],
+            ['id' => 3, 'name' => 'Tim'],
+            ['id' => 4, 'name' => 'Joe'],
+        ]);
+        $currentPage = 2;
+        $perPage = 2;
+        $users = array_values($collection->forPage($currentPage, $perPage)->toArray());
 
-        $user = $this->request->input('user', 'Hyperf');
-        $method = $this->request->getMethod();
+        var_dump($users);
+        return $users;
+//        $data = new Paginator($users, $perPage, $currentPage);
+//        return $data;
         /*return [
             Coroutine::inCoroutine(), // 判断是否在协成状态
             Coroutine::id(), // 当前协成id
@@ -91,15 +108,15 @@ class IndexController extends AbstractController
         ];*/
         $cookie = new Cookie('key', 'value');
 
-        for ($i = 0; $i < 10; $i++) {
+        /*for ($i = 0; $i < 10; $i++) {
             $response->write((string)$i);
-        }
+        }*/
+
+//        return $response->write('Hello Hyperf');
 
 //        return $response->download('/data/app/mine/study/hyperf/my-hyperf-app/public/upload/1.jpg', '1.jpg');
 
-        return $response->write('Hello Hyperf');
-
-        return $response->withCookie($cookie)->withContent('Hello Hyperf.');
+//        return $response->withCookie($cookie)->withContent('Hello Hyperf.');
 
     }
 
