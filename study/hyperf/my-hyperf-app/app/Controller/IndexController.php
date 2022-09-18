@@ -142,7 +142,7 @@ class IndexController extends AbstractController
 
 //        return $response->download('/data/app/mine/study/hyperf/my-hyperf-app/public/upload/1.jpg', '1.jpg');
 
-//        return $response->withCookie($cookie)->withContent('Hello Hyperf.');
+        return $response->withCookie($cookie)->withContent('Hello Hyperf.');
 
     }
 
