@@ -33,8 +33,8 @@ use Hyperf\Validation\Contract\ValidatorFactoryInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\HttpMessage\Cookie\Cookie;
-use Hyperf\Paginator\Paginator;
-
+use Hyperf\Utils\ApplicationContext;
+use App\JsonRpc\CalculatorServiceInterface;
 
 /**
  * Class IndexController
@@ -269,5 +269,12 @@ var_dump($this->session->get('foo'));
     public function db()
     {
 
+    }
+
+    public function rpc()
+    {
+        $client = ApplicationContext::getContainer()->get(CalculatorServiceInterface::class);
+
+        var_dump($client->add(1, 4));
     }
 }
