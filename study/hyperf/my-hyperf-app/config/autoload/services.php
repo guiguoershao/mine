@@ -62,13 +62,13 @@ return [
     ],
     'providers' => [],
     'drivers' => [
-        'consul' => [
+        /*'consul' => [
             'uri' => 'http://120.77.156.30:8011',
             'token' => '',
             'check' => [
                 'deregister_critical_service_after' => '9m',
                 'interval' => '1s',
             ],
-        ],
+        ],*/
     ],
 ];

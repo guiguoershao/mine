@@ -40,7 +40,7 @@ return [
             ],
         ],*/
 
-        [
+        /*[
 //            'name' => 'jsonrpc-http',
 //            'type' => Server::SERVER_HTTP,
 //            'host' => '0.0.0.0',
@@ -62,7 +62,7 @@ return [
                 'open_eof_split' => true, // 启用 EOF 自动分包
                 'package_eof' => "\r\n", // 设置 EOF 字符串
             ],
-        ],
+        ],*/
     ],
     'settings' => [
         Constant::OPTION_ENABLE_COROUTINE => true, // // 开启内置协程

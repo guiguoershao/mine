@@ -275,6 +275,10 @@ var_dump($this->session->get('foo'));
     {
         $client = ApplicationContext::getContainer()->get(CalculatorServiceInterface::class);
 
-        var_dump($client->add(1, 4));
+        var_dump($client->add(1, 6));
+
+        return [
+            '1 + 6 = '.$client->add(1, 6)
+        ];
     }
 }

@@ -21,6 +21,6 @@ class CalculatorService implements CalculatorServiceInterface
      */
     public function add(int $a, int $b): int
     {
-        return $a + $b;
+        return $a + $b + 6;
     }
 }
