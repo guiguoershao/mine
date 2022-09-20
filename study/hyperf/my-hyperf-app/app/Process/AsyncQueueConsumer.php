@@ -12,11 +12,24 @@ declare(strict_types=1);
 namespace App\Process;
 
 use Hyperf\AsyncQueue\Process\ConsumerProcess;
+use Hyperf\Cache\Driver\DriverInterface;
 use Hyperf\Process\Annotation\Process;
 
-/**
- * @Process
- */
+
 class AsyncQueueConsumer extends ConsumerProcess
 {
+    /**
+     * @var string
+     */
+    protected $queue = 'test';
+
+    /**
+     * @var DriverInterface
+     */
+    protected $driver;
+
+    /**
+     * @var array
+     */
+    protected $config;
 }

@@ -12,4 +12,6 @@ declare(strict_types=1);
 return [
     \Hyperf\ExceptionHandler\Listener\ErrorExceptionHandler::class,
     \App\Listener\UserRegisteredListener::class,
+    Hyperf\AsyncQueue\Listener\QueueLengthListener::class, // 框架自带了一个记录队列长度的监听器，默认不开启。您如果需要，可以自行添加到 listeners 配置中。
+
 ];

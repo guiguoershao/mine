@@ -24,6 +24,7 @@ Router::post('/upload', 'App\Controller\IndexController@upload');
 
 Router::addRoute(['GET', 'POST',], '/db', 'App\Controller\IndexController@db');
 Router::addRoute(['GET', 'POST',], '/rpc', 'App\Controller\IndexController@rpc');
+Router::addRoute(['GET', 'POST',], '/queue', 'App\Controller\IndexController@queue');
 
 Router::get('/favicon.ico', function () {
     return '';

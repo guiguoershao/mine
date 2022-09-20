@@ -14,6 +14,7 @@ namespace App\Controller;
 
 use App\Exception\ApiException;
 use App\Log;
+use App\Service\QueueService;
 use App\Service\SystemService;
 use App\Service\UserServiceInterface;
 use Hyperf\Context\Context;
@@ -287,5 +288,31 @@ var_dump($this->session->get('foo'));
         return [
             '1 + 6 = '.$client->add(1, 6)
         ];
+    }
+
+    /**
+     * @Inject
+     * @var QueueService $queueService
+     */
+    protected $queueService;
+
+    /**
+     *
+     */
+    public function queue()
+    {
+        $this->queueService->push([
+            'group@hyperf.io',
+            'https://doc.hyperf.io',
+            'https://www.hyperf.io',
+        ]);
+
+        $this->queueService->example([
+            '消息发送成功',
+            'group@hyperf.io',
+            'https://doc.hyperf.io',
+        ]);
+
+        return '消息发送成功';
     }
 }

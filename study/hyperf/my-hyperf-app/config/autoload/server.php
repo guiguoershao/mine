@@ -29,7 +29,7 @@ return [
                 Event::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
             ],
             'settings' => [
-                'open_websocket_protocol' => false, // false 表示http服务不启用websocket
+//                'open_websocket_protocol' => false, // false 表示http服务不启用websocket
             ],
         ],
         /*[
