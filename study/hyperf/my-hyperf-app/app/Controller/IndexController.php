@@ -25,6 +25,7 @@ use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\HttpServer\Request;
 use Hyperf\HttpServer\Response;
 use Hyperf\Logger\LoggerFactory;
+use Hyperf\RateLimit\Annotation\RateLimit;
 use Hyperf\Utils\Collection;
 use Hyperf\Utils\Coroutine;
 use Hyperf\Utils\Exception\ParallelExecutionException;
@@ -271,6 +272,12 @@ var_dump($this->session->get('foo'));
 
     }
 
+    /**
+     * @RateLimit(create=1, capacity=3)
+     * @return string[]
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function rpc()
     {
         $client = ApplicationContext::getContainer()->get(CalculatorServiceInterface::class);

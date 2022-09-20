@@ -15,6 +15,7 @@ namespace App\Exception\Handler;
 use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\ExceptionHandler\ExceptionHandler;
 use Hyperf\HttpMessage\Stream\SwooleStream;
+use Hyperf\RateLimit\Exception\RateLimitException;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
@@ -38,6 +39,16 @@ class AppExceptionHandler extends ExceptionHandler
             $this->logger->error($throwable->getTraceAsString());
 
             return $response->withHeader('Server', 'Hyperf')->withStatus(500)->withBody(new SwooleStream('Internal Server Error.'));
+        } elseif ($throwable instanceof RateLimitException) {
+            // 格式化输出
+            $respData = json_encode([
+                'code' => $throwable->getCode() == 0 ?: -1,
+                'msg' => "请求过于频繁，请稍后重试！",
+                'data' => null,
+            ], JSON_UNESCAPED_UNICODE);
+            // 阻止异常冒泡
+            $this->stopPropagation();
+            return $response->withStatus(200)->withBody(new SwooleStream($respData));
         }
 
         return $response;

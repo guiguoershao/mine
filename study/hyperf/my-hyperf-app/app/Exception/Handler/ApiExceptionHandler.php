@@ -7,6 +7,7 @@ use App\Exception\ApiException;
 use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\ExceptionHandler\ExceptionHandler;
 use Hyperf\HttpMessage\Stream\SwooleStream;
+use Hyperf\RateLimit\Exception\RateLimitException;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
@@ -25,6 +26,7 @@ class ApiExceptionHandler extends ExceptionHandler
 
     public function handle(Throwable $throwable, ResponseInterface $response)
     {
+        var_dump(11111111111);
         // 判断被捕获到的异常是希望被捕获的异常
         if ($throwable instanceof ApiException) {
             // 格式化输出
