@@ -43,7 +43,8 @@
         "hyperf/testing": "^2.2",
         "hyperf/tracer": "~2.2.0",
         "hyperf/validation": "^2.2",
-        "hyperf/view": "^2.2"
+        "hyperf/view": "^2.2",
+        "hyperf/websocket-server": "^2.2"
     },
     "require-dev": {
         "filp/whoops": "^2.14",

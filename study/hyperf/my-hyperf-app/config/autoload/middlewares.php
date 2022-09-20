@@ -15,4 +15,7 @@ return [
         // 数组内配置您的全局中间件，顺序根据该数组的顺序
         \Hyperf\Validation\Middleware\ValidationMiddleware::class,
     ],
+    'ws' => [
+        \App\Middleware\Auth\FooMiddleware::class
+    ],
 ];

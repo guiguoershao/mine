@@ -39,7 +39,7 @@ class FooMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         // 根据具体业务判断逻辑走向，这里假设用户携带的token有效
-        $isValidToken = true;
+        $isValidToken = false;
         if ($isValidToken) {
             return $handler->handle($request);
         }

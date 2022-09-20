@@ -12,6 +12,7 @@ declare(strict_types=1);
 use Hyperf\ConfigApollo\PullMode;
 use Hyperf\ConfigCenter\Mode;
 
+return [];
 return [
     'enable' => (bool) env('CONFIG_CENTER_ENABLE', true),
     'driver' => env('CONFIG_CENTER_DRIVER', 'apollo'),

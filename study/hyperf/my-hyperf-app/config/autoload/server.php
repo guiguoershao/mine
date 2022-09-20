@@ -28,6 +28,9 @@ return [
             'callbacks' => [
                 Event::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
             ],
+            'settings' => [
+                'open_websocket_protocol' => false, // false 表示http服务不启用websocket
+            ],
         ],
         /*[
             'name' => 'InnerHttp',
@@ -63,6 +66,18 @@ return [
                 'package_eof' => "\r\n", // 设置 EOF 字符串
             ],
         ],*/
+        [
+            'name' => 'ws',
+            'type' => Server::SERVER_WEBSOCKET,
+            'host' => '0.0.0.0',
+            'port' => 8009,
+            'sock_type' => SWOOLE_SOCK_TCP,
+            'callbacks' => [
+                Event::ON_HAND_SHAKE => [Hyperf\WebSocketServer\Server::class, 'onHandShake'],
+                Event::ON_MESSAGE => [Hyperf\WebSocketServer\Server::class, 'onMessage'],
+                Event::ON_CLOSE => [Hyperf\WebSocketServer\Server::class, 'onClose'],
+            ],
+        ],
     ],
     'settings' => [
         Constant::OPTION_ENABLE_COROUTINE => true, // // 开启内置协程

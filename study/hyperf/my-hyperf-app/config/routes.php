@@ -28,3 +28,7 @@ Router::addRoute(['GET', 'POST',], '/rpc', 'App\Controller\IndexController@rpc')
 Router::get('/favicon.ico', function () {
     return '';
 });
+
+Router::addServer('ws', function () {
+    Router::get('/', 'App\Controller\WebSocketController');
+});
