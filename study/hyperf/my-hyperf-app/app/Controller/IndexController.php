@@ -14,11 +14,13 @@ namespace App\Controller;
 
 use App\Exception\ApiException;
 use App\Log;
+use App\Model\CultureFeiyiMingluEntity;
 use App\Service\QueueService;
 use App\Service\SystemService;
 use App\Service\UserServiceInterface;
 use Hyperf\Context\Context;
 use Hyperf\Contract\PaginatorInterface;
+use Hyperf\DbConnection\Db;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\RequestMapping;
 use Hyperf\HttpServer\Contract\RequestInterface;
@@ -95,7 +97,7 @@ class IndexController extends AbstractController
         );
 
 //        $validator->validate();
-        if ($validator->fails()){
+        if ($validator->fails()) {
             // Handle exception
             $errorMessage = $validator->errors()->first();
             var_dump($errorMessage);
@@ -120,7 +122,7 @@ class IndexController extends AbstractController
         $this->userService->register($payload);
 
         $this->session->set('foo', 'bar');
-var_dump($this->session->get('foo'));
+        var_dump($this->session->get('foo'));
         Log::get('app')->error("这里是测试日志-222", $payload);
 
         // 这里根据 $currentPage 和 $perPage 进行数据查询，以下使用 Collection 代替
@@ -268,9 +270,24 @@ var_dump($this->session->get('foo'));
         });*/
     }
 
-    public function db()
+    public function db(RequestInterface $request, ResponseInterface $response)
     {
+//        $lists = Db::connection('default')->select("SELECT * FROM culture_feiyi_minglu_entities");
 
+        $lists = CultureFeiyiMingluEntity::query()->select(["id", "fy_type",
+            "code",
+            "title",
+            "jibie",
+            "lei_bie",
+        ])->paginate(10);
+
+        return $response->json([
+            'code' => 0,
+            'msg' => 'ok',
+            'data' => [
+                'lists' => $lists
+            ],
+        ]);
     }
 
     /**
@@ -286,7 +303,7 @@ var_dump($this->session->get('foo'));
         var_dump($client->add(1, 6));
 
         return [
-            '1 + 6 = '.$client->add(1, 6)
+            '1 + 6 = ' . $client->add(1, 6)
         ];
     }
 
