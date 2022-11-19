@@ -1,0 +1,5 @@
+/.idea
+/study/python/.idea
+/study/package/.idea
+/rabbitmq-comsumer/target
+/rabbitmq-producer/target
