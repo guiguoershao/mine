@@ -5,3 +5,4 @@
 /rabbitmq-producer/target
 /spring-rabbitmq-producers/target
 /spring-rabbitmq-consumers/target
+/springboot-rabbitmq-producer/target

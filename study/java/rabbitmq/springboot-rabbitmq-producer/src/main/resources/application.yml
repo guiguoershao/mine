@@ -1,0 +1,8 @@
+# 配置rabbitmq的基本信息 ip port user password
+spring:
+  rabbitmq:
+    host: 120.77.156.30
+    port: 5672
+    username: fengyan
+    password: fengyan1992
+    virtual-host: /itcast
