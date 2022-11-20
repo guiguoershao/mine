@@ -3,3 +3,5 @@
 /study/package/.idea
 /rabbitmq-comsumer/target
 /rabbitmq-producer/target
+/spring-rabbitmq-producers/target
+/spring-rabbitmq-consumers/target
