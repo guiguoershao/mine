@@ -19,6 +19,6 @@ npm-debug.log
 yarn-error.log
 .env
 vendor.zip
-composer.lock
+composer.lock.bak
 public/swhttpserver.pid
 public/swlog.txt

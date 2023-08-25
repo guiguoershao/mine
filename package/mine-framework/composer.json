@@ -31,12 +31,14 @@
       "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ]
   },
-  "repositories": {
-    "packagist": {
+  "repositories": [
+    {
+      "description": "阿里云镜像",
       "type": "composer",
-      "url": "https://mirrors.aliyun.com/composer/"
+      "url": "https://mirrors.aliyun.com/composer/",
+      "canonical": false
     }
-  },
+  ],
   "config": {
     "allow-plugins": {
       "easywechat-composer/easywechat-composer": true
