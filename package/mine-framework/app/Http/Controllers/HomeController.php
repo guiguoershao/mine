@@ -9,6 +9,7 @@ use App\Services\MyRedisLock;
 use guiguoershao\Facades\ConfigFacade;
 use Library;
 use Config;
+
 class HomeController
 {
 
@@ -72,13 +73,13 @@ BsN0a03Jn0yt2bZliwIDAQAB
         \MyRedis::set('a', 2);
         dump(\MyRedis::get('a'));
         dump(\MyRedis::del('a'));
-
+        $redis = make("MyRedis");
         $key = 'Hello';
-        $re1 = MyRedisLock::getInstance()->lock($key);
+        $re1 = MyRedisLock::getInstance($redis)->lock($key);
         dump($re1);
-        dump(MyRedisLock::getInstance()->releaseLock($key, $re1));
-        $re2 = MyRedisLock::getInstance()->lock($key);
-        dump(MyRedisLock::getInstance()->releaseLock($key, $re2));
+        dump(MyRedisLock::getInstance($redis)->releaseLock($key, $re1));
+        $re2 = MyRedisLock::getInstance($redis)->lock($key);
+        dump(MyRedisLock::getInstance($redis)->releaseLock($key, $re2));
         dump($re2);
     }
 

@@ -3,7 +3,7 @@ return [
     'client' => 'predis',
 
     'default' => [
-        'host' => '127.0.0.1',
+        'host' => 'redis',
         'password' => null,
         'port' => 6379,
         'database' => 0,

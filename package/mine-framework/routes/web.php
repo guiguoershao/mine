@@ -4,7 +4,7 @@ use guiguoershao\Route\Route;
 
 
 Route::get('/', function () {
-    echo 'Hello World';
+    phpinfo();
 });
 
 Route::get('home', [\App\Http\Controllers\HomeController::class, "index"]);
