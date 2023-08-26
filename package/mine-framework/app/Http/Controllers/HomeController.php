@@ -15,7 +15,7 @@ class HomeController
     public function index()
     {
 
-        dd(Config::get('redis'));
+//        dd(Config::get('redis'));
         dump('------------------DES加密--------------------------------------');
         $key = '123456';
         $data = 'Hello World';

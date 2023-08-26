@@ -22,3 +22,4 @@ vendor.zip
 composer.lock.bak
 public/swhttpserver.pid
 public/swlog.txt
+composer.lock

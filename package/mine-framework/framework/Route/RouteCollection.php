@@ -119,13 +119,21 @@ class RouteCollection
                 if ($route['action'] instanceof \Closure) {
                     $http->callFunction($route['action']);
                 } else {
-                    $routeArr = explode('@', $route['action']);
-                    if (count($routeArr) == 2) {
-                        list($controller, $param) = self::parseClass(self::$rootNamespace.$routeArr[0], $routeArr[1], $route['param']);
+                    if (is_array($route['action'])) {
+                        $routeArr = $route['action'];
+                        list($controller, $param) = self::parseClass($routeArr[0], $routeArr[1], $route['param']);
                         return $http->callController($controller, $routeArr[1], $param);
                     } else {
-                        $http->noFound();
+                        $routeArr = explode('@', $route['action']);
+                        if (count($routeArr) == 2) {
+                            list($controller, $param) = self::parseClass(self::$rootNamespace.$routeArr[0], $routeArr[1], $route['param']);
+                            return $http->callController($controller, $routeArr[1], $param);
+                        } else {
+                            $http->noFound();
+                        }
                     }
+
+
                 }
                 break;
             default:
