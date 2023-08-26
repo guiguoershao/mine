@@ -7,7 +7,7 @@ Route::get('/', function () {
     echo 'Hello World';
 });
 
-Route::get('home', 'HomeController@index');
+Route::get('home', [\App\Http\Controllers\HomeController::class, "index"]);
 Route::get('redis', 'HomeController@redis');
 Route::get('test', 'HomeController@test');
 Route::get('ssl/test', 'SslController@test');
